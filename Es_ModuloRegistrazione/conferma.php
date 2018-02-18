@@ -5,16 +5,16 @@ $sesso=$_REQUEST["sesso"];
 $nazionalita=$_REQUEST["nazionalita"];
 $email=$_REQUEST["email"];
 if(isset($_REQUEST["patenteA"]) and !isset($_REQUEST["patenteB"])){
- $patente=$_REQUEST["patenteA"];
+ $patente='A';
 }
 elseif(isset($_REQUEST["patenteB"]) and !isset($_REQUEST["patenteA"])){
-   $patente=$_REQUEST["patenteB"];
+   $patente='B';
 }
 elseif(isset($_REQUEST["patenteA"]) and isset($_REQUEST["patenteA"])){
-   $patente=$_REQUEST["patenteA"]." e ".$_REQUEST["patenteB"];
+   $patente='A e B';
 }  
 else{
-   $patente="nessuna";
+   $patente="Nessuna";
    }
 
 ?>
@@ -82,9 +82,9 @@ else{
               <input type="hidden" name="email" value="<?php echo $email ?>">
             </div>
             <div class="card-footer">
-              <form action="index.php" method="post">
-                <button class="btn btn-secondary " type="submit">        Correggi        </button>
-              </form>
+           
+                <button class="btn btn-secondary " type="submit" onclick = "this.form.action = 'index.php'">        Correggi        </button>
+             
               <button type="submit" class="btn btn-success ">        Registra        </button>
             </div>
           </div>

@@ -47,9 +47,9 @@
               </legend>
               <div class="col-9">
                 <select class="form-control" name="nazionalita">     
-          <option value="ita">Italiana</option>
-          <option value="per">Peruviana</option>
-          <option value="altro">Altro</option>
+          <option value="Italiana">Italiana</option>
+          <option value="Peruviana">Peruviana</option>
+          <option value="Altro">Altro</option>
           </select>
               </div>
             </div>
@@ -60,12 +60,12 @@
               <div class="col-9">
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="patenteA" value="catg. A"> cat. A  
+                <input type="checkbox" class="form-check-input" name="patenteA" > cat. A  
               </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="patenteB" value="catg. B"> cat. B 
+                <input type="checkbox" class="form-check-input" name="patenteB"> cat. B 
               </label>
                 </div>
               </div>
