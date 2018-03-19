@@ -1,37 +1,28 @@
 <?php
+include 'conn.php';
+
 $nome=$_REQUEST["nome"];
 $cognome=$_REQUEST["cognome"];
 $sesso=$_REQUEST["sesso"];
 $nazionalita=$_REQUEST["nazionalita"];
 $email=$_REQUEST["email"];
 $patente=$_REQUEST["patente"];
+$password=$_REQUEST["password"];
 
-$conn='mysql:host=127.0.0.1; dbname=miodb_Lopez;' ;
-$user='root';
-$pass='481516';
-try {
-    $dbh=new PDO($conn, $user, $pass);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Errore nella connessione: ' . $e->getMessage();
-  die();
-}
-$mioquery=$dbh->prepare("INSERT INTO utente(Cognome, Nome, Sesso, Nazionalita, Patente, Email) VALUES(:cognome, :nome, :sesso,:nazionalita,:patente,:email)");
 
+$mioquery=$dbh->prepare("INSERT INTO utente(Cognome, Nome, Sesso, Nazionalita, Patente, Email,password) VALUES(:cognome, :nome, :sesso,:nazionalita,:patente,:email,MD5(:password))");
 $mioquery->bindValue(":cognome",$cognome);
 $mioquery->bindValue(":nome",$nome);
 $mioquery->bindValue(":sesso",$sesso);
 $mioquery->bindValue(":nazionalita",$nazionalita);
 $mioquery->bindValue(":email",$email);
 $mioquery->bindValue(":patente",$patente);
-
+$mioquery->bindValue(":password",$password);
 if(!$mioquery->execute()){
   echo "Non è stato inserito";
 }
-
-  
-
 ?>
+
   <html>
 
   <head>
@@ -57,24 +48,15 @@ if(!$mioquery->execute()){
             </h4>
           </div>
           <div class="card-footer" align="center">
-
-            <button class="btn">
+            <form action="index.php" >
+              <button class="btn" type="submit">
                   Chiudi
                 </button>
+            </form>
+
           </div>
         </div>
-            <table class="table table-sm">
-               <?php     
-              $stringa="SELECT * FROM utente";
-      $query2=$dbh->prepare($stringa);
-      if($query2->execute()){
-        echo ' <thead> <tr> <th scope="col">ID utente</th><th scope="col">Cognome</th><th scope="col">Nome</th><th scope="col">Sesso</th><th scope="col">Nazionalita</th><th scope="col">Patente</th><th scope="col">Email</th> </tr></thead> <tbody>';
-        while($row=$query2->fetch()){
-          echo '<tr> <td>'. $row['ID'].'</td><td> '. $row['Cognome'].'</td><td> '.$row['Nome'].'</td><td> '.$row['Sesso'].'</td><td> '.$row['Nazionalita'].' </td><td>'.$row['Patente'].'</td><td> '.$row['Email'].'</td></tr>';
-        } 
-        echo '</tbody>';
-      }
-            ?></table>
+       
 
       </div>
     </div>

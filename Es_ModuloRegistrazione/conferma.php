@@ -4,6 +4,7 @@ $cognome=$_REQUEST["cognome"];
 $sesso=$_REQUEST["sesso"];
 $nazionalita=$_REQUEST["nazionalita"];
 $email=$_REQUEST["email"];
+$password=$_REQUEST["password"];
 if(isset($_REQUEST["patenteA"]) and !isset($_REQUEST["patenteB"])){
  $patente='A';
 }
@@ -18,6 +19,11 @@ else{
    }
 
 ?>
+<script>
+  function goBack(){
+      window.history.go(-1);  
+  }
+</script>
   <html>
 
   <head>
@@ -80,10 +86,11 @@ else{
               <input type="hidden" name="nazionalita" value="<?php echo $nazionalita ?>">
               <input type="hidden" name="patente" value="<?php echo $patente ?>">
               <input type="hidden" name="email" value="<?php echo $email ?>">
+              <input type="hidden" name="password" value="<?php echo $password ?>">
             </div>
             <div class="card-footer">
            
-                <button class="btn btn-secondary " type="submit" onclick = "this.form.action = 'index.php'">        Correggi        </button>
+                <button type="button" class="btn btn-secondary" onclick = "goBack()">        Correggi        </button>
              
               <button type="submit" class="btn btn-success ">        Registra        </button>
             </div>
