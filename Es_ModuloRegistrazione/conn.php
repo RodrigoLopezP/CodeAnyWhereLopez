@@ -1,6 +1,6 @@
 <?php
 
-include 'conn.php';
+
 $conn='mysql:host=127.0.0.1; dbname=miodb_Lopez;' ;
 $user='root';
 $pass='481516';

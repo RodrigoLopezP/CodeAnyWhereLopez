@@ -1,3 +1,4 @@
+
 <?php include 'conn.php';?>
 <html>
 
@@ -7,7 +8,7 @@
 
 <body>
   <h1>
-     Sei loggato come <?php echo "Sei loggato come". $_SESSION["ID_user"]; ?>
+     Sei loggato come 
   </h1>
  <button>
    Log out
