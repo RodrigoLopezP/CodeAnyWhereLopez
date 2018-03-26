@@ -8,8 +8,6 @@ $nazionalita=$_REQUEST["nazionalita"];
 $email=$_REQUEST["email"];
 $patente=$_REQUEST["patente"];
 $password=$_REQUEST["password"];
-
-
 $mioquery=$dbh->prepare("INSERT INTO utente(Cognome, Nome, Sesso, Nazionalita, Patente, Email,password) VALUES(:cognome, :nome, :sesso,:nazionalita,:patente,:email,MD5(:password))");
 $mioquery->bindValue(":cognome",$cognome);
 $mioquery->bindValue(":nome",$nome);

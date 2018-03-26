@@ -1,30 +1,36 @@
-<!--FINIRE DI COMPLETARE IL LOGOUT CON $ROW=0 O =1--->
 <?php
 include 'conn.php';
-session_start(); // Starting Session
-$error=''; // Variable To Store Error Message
-  if (isset($_POST['btnLogin'])) {
-    if (empty($_POST['LoginEmail']) || empty($_POST['LoginPassword'])) {
-    $error = "Username or Password is invalid";
-     }
-    else{
-       // Define $username and $password
-       $user=$_POST['LoginEmail'];
+ // Starting Session
+session_start(); // Initializing Session
+  if (isset($_POST['btnLogin'])) {       
+    //Prendo la email e la password dal form
+       $user=$_POST['LoginEmail'];    
        $pass=$_POST['LoginPassword'];
-       $mioquery=$dbh->prepare("SELECT utente.ID FROM utente WHERE utente.email=:email AND utente.password=MD5(:password));");
+    //Converto la password in MD5
+       $pass=MD5($pass);
+       $mioquery=$dbh->prepare("SELECT * FROM utente WHERE utente.email=:email AND utente.password=:password;"); //query
        $mioquery->bindValue(":email",$user);
        $mioquery->bindValue(":password",$pass);
-       $rows = mysql_num_rows($mioquery);
-      if ($rows == 1) {
-        $_SESSION['ID']=$rows['ID']; // Initializing Session
-        header("location: Dashbboard.php"); // Redirecting To Other Page
-        }
-      else {
-        $error = "Username or Password is invalid";
+    //Se la query si esegue con successo...
+      if($mioquery->execute()){ 
+        $cuenta = $mioquery->rowCount(); //conta le righe che vengono come risultato della query
+        $row=$mioquery->fetch(); 
+          if ($cuenta == 1) {
+             $_SESSION['ID']=$row['ID']; 
+             $_SESSION['Nome']=$row['Nome'];
+             $_SESSION['Cognome']=$row['Cognome'];
+             $_SESSION['Email']=$row['Email'];
+             $_SESSION['Sesso']=$row['Sesso'];
+            header("location: Dashboard.php"); // Redirecting To Other Page        
+          }
+        //Se c'è un errore...
+          else {
+             session_destroy();
+            echo "<script>alert('Email o password errata);window.location.href='LogIn.php';</script>";
+           
+          }
       }
   }
-}
-
 ?>
 </script>
   <html>

@@ -1,6 +1,7 @@
 <?php
 include 'conn.php';
 
+
 ?>
 <script type="text/javascript">
  function verifica(mioform){
@@ -11,6 +12,14 @@ include 'conn.php';
    else
      return true;
  }
+   function modoSign() {
+    if (document.getElementById('clientee').checked) {
+        document.getElementById('modoAutista').style.visibility = 'visible';
+    }
+    else document.getElementById('modoAutista').style.visibility = 'hidden';
+
+}
+ 
 </script>
 <html>
 
@@ -32,6 +41,32 @@ include 'conn.php';
             <h1 align="center"> Modulo di inscrizione</h1>
           </div>
           <div class="card-body">
+            
+            <div class="form-group row">
+              
+              
+              <!--Autista o cliente?-->
+            <legend class="col-3 col-form-label">
+                Come vuoi registrarti?
+              </legend>
+              <div class="col-9">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="modo" id="clientee" value="cliente" onclick="javascript:modoSign()" > Cliente
+              </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="modo" id="autistaa" value="autista" onclick="javascript:modoSign()" > Autista
+              </label>
+                </div>
+               
+              
+             
+              </div>
+ 
+              
+            </div>
             <div class="form-group row">
               <legend class="col-3 col-form-label">Cognome</legend>
               <div class="col-9">
@@ -92,6 +127,7 @@ include 'conn.php';
                 <input type="password" class="form-control" placeholder="Password" name="password" required>
               </div>
             </div>
+            
              <div class="form-group row">
               <legend class="col-4 col-form-label">Conferma password</legend>
               <div class="col-7">
@@ -100,13 +136,14 @@ include 'conn.php';
             </div>
           </div>
           
-          </div>
-          <div class="card-footer" align="center">
+           <div class="card-footer" align="center">
 
             <button type="reset" class="btn btn-secondary">Annulla</button>
             <button type="submit" class="btn btn-danger" name="btnConferma" onclick="verifica()">Conferma</button>
 
           </div>
+          </div>
+         
            </div>
       </form>
 
@@ -114,5 +151,4 @@ include 'conn.php';
     </div>
   </div>
 </body>
-
 </html>

@@ -1,17 +1,30 @@
+<?php include 'conn.php';
+  session_start();
+if(isset($_POST['LogOut'])){
+  session_destroy();
+  header("Location:index.php");
+}
+?>
 
-<?php include 'conn.php';?>
 <html>
-
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-
 <body>
-  <h1>
-     Sei loggato come 
-  </h1>
- <button>
-   Log out
+   <?php 
+    if (isset($_SESSION['ID'])){
+      echo "<h1>  Sei loggato come ". $_SESSION["Nome"]."  ". $_SESSION["Cognome"] . "</h1>
+         <form method='POST'>
+       <input type='submit' name='LogOut' value='LogOut' >
+        </form>";
+    }
+    else{
+      echo "<h1> Non sei loggato</h1>";
+    }
+  ?>  
+ 
+  
+   <button onclick ="location='index.php'">
+   Home
   </button>
 </body>
 
