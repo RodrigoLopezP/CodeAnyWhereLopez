@@ -14,10 +14,14 @@ include 'conn.php';
  }
    function modoSign() {
     if (document.getElementById('clientee').checked) {
-        document.getElementById('modoAutista').style.visibility = 'visible';
-    }
-    else document.getElementById('modoAutista').style.visibility = 'hidden';
+        document.getElementById('scadPat').style.display = 'none';
+        document.getElementById('numPat').style.display = 'none';
 
+    }
+    else {
+        document.getElementById('scadPat').style.display = 'block';
+        document.getElementById('numPat').style.display = 'block';
+     }
 }
  
 </script>
@@ -29,110 +33,97 @@ include 'conn.php';
 
 <body>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
     </div>
-    <div class="col-md-4 " >
-
-
-
-      <form action="conferma.php" method="post" name="mioform" onSubmit="return verifica() " >
-        <div class="card" style="background-color:MediumTurquoise;">
+    <div class="col-md-6 " >
+      <form action="conferma.php" method="post" name="mioform" onSubmit="return verifica()" >
+        <div class="card " style="background-color:SkyBlue;">
           <div class="card-header">
             <h1 align="center"> Modulo di inscrizione</h1>
           </div>
           <div class="card-body">
-            
-            <div class="form-group row">
-              
-              
-              <!--Autista o cliente?-->
-            <legend class="col-3 col-form-label">
-                Come vuoi registrarti?
-              </legend>
-              <div class="col-9">
+             <!--Autista o cliente?--- modo --->
+            <div class="form-group">            
+            <label> Come vuoi registrarti? </label>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="modo" id="clientee" value="cliente" onclick="javascript:modoSign()" > Cliente
+                <input type="radio" class="form-check-input" name="modo" id="clientee" value="Cliente" onclick="javascript:modoSign()" required> Cliente
               </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="modo" id="autistaa" value="autista" onclick="javascript:modoSign()" > Autista
+                <input type="radio" class="form-check-input" name="modo" id="autistaa" value="Autista" onclick="javascript:modoSign()" required> Autista
               </label>
-                </div>
-               
-              
-             
+                </div>            
               </div>
- 
-              
+             <!--cognome-->
+            <div class="form-group">
+              <label>Cognome:</label>      
+                <input type="text" class="form-control" placeholder="Cognome" name="cognome" autocomplete="off" required>           
             </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">Cognome</legend>
-              <div class="col-9">
-                <input type="text" class="form-control " placeholder="Cognome" name="cognome" autocomplete="off" required>
-              </div>
+             <!--nome-->
+            <div class="form-group">
+              <label>Nome:</label>        
+                <input type="text" class="form-control" placeholder="Nome" name="nome" autocomplete="off" required>             
             </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">Nome</legend>
-              <div class="col-9">
-                <input type="text" class="form-control" placeholder="Nome" name="nome" autocomplete="off" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">Sesso</legend>
-              <div class="col-9">
+            <!--sesso-->
+            <div class="form-group">
+              <label>Sesso:</label>   </br>         
                 <label class="checkbox-inline"> <input type="radio" name="sesso" value="M" required/> Maschile </label>
-                <label class="checkbox-inline"> <input type="radio" name="sesso" value="F" required/> Femminile </label>
-              </div>
+                <label class="checkbox-inline"> <input type="radio" name="sesso" value="F" required/> Femminile </label>           
             </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">
-                Nazionalita
-              </legend>
-              <div class="col-9">
+          <!--datanascita-->
+           <div class="form-group">
+              <label>Data di nascita: </label>
+                <input type="date" class="form-control" name="datanascita" required>
+              
+            </div>
+          <!--nazionalita-->
+            <div class="form-group">
+              <label>Nazionalita</label>
                 <select class="form-control" name="nazionalita">     
-          <option value="Italiana">Italiana</option>
-          <option value="Peruviana">Peruviana</option>
-          <option value="Altro">Altro</option>
-          </select>
-              </div>
+                  <option value="Italiana">Italiana</option>
+                  <option value="Peruviana">Peruviana</option>
+                  <option value="Altro">Altro</option>
+                </select>
+            </div> 
+          <!--numPat-->
+            <div class="form-group" id="numPat"  style="display:none;"> 
+              <label>Numero Patente: </label>
+                <input type="text" class="form-control"  name="numPat"  autocomplete="off">
             </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">
-                Patente:
-              </legend>
-              <div class="col-9">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="patenteA" > cat. A  
-              </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="patenteB"> cat. B 
-              </label>
-                </div>
-              </div>
+          <!--scadPat-->
+            <div class="form-group" id="scadPat" style="display:none;">
+              <label>Scadenza: </label>
+                <input type="date" class="form-control" name="scadPat">
+              
             </div>
-            <div class="form-group row">
-              <legend class="col-3 col-form-label">Email</legend>
-              <div class="col-9">
-                <input type="email" class="form-control" placeholder="Email" name="email" required>
-              </div>
+          <!--telefono-->
+             <div class="form-group">
+              <label>Telefono:</label>      
+                <input type="text" class="form-control" name="telefono" autocomplete="off" required>
+              
             </div>
-            <div class="form-group row">
-              <legend class="col-4 col-form-label">Password</legend>
-              <div class="col-7">
+          <!--username-->
+            <div class="form-group">
+              <label>Username</label>      
+                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="off" required>
+              
+            </div>
+          <!--email-->
+            <div class="form-group">
+              <label>Email: </label>      
+                <input type="email" class="form-control" placeholder="example@gmail.com" name="email" autocomplete="off" required>              
+            </div>
+          <!--password-->
+            <div class="form-group">
+              <label>Password</label>
                 <input type="password" class="form-control" placeholder="Password" name="password" required>
-              </div>
-            </div>
-            
-             <div class="form-group row">
-              <legend class="col-4 col-form-label">Conferma password</legend>
-              <div class="col-7">
+            </div> 
+          <!--confirm_password-->
+            <div class="form-group">
+              <label>Conferma password</label>
                 <input type="password" class="form-control" placeholder="Conferma password" name="confirm_password" required>
-              </div>
             </div>
           </div>
           
@@ -142,9 +133,8 @@ include 'conn.php';
             <button type="submit" class="btn btn-danger" name="btnConferma" onclick="verifica()">Conferma</button>
 
           </div>
-          </div>
          
-           </div>
+         
       </form>
 
      
