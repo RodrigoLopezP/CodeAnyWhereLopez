@@ -10,9 +10,10 @@ $telefono=$_REQUEST["telefono"];
 $data_nascita=$_REQUEST["datanascita"];
 $sesso=$_REQUEST["sesso"];
 $nazionalita=$_REQUEST["nazionalita"];
-if($modo=="autista"){
-  $scadPat=$_REQUEST["scadPat"];
-  $numPat=$_REQUEST["numPat"];
+ $scadPat=$_REQUEST["scadPat"];
+ $numPat=$_REQUEST["numPat"];
+if($modo=="Autista"){
+try{
   $mioquery=$dbh->prepare("INSERT INTO Autista(cognome, nome,username,email,password,telefono,data_nascita,sesso,nazionalita,numero_patente,scadenza_patente) VALUES(:cognome,:nome,:username,:email,MD5(:password),:telefono,:data_nascita,:sesso,:nazionalita,:numero_patente,:scadenza_patente)");
   $mioquery->bindValue(":cognome",$cognome);
   $mioquery->bindValue(":nome",$nome);
@@ -29,7 +30,12 @@ if($modo=="autista"){
     echo "Non è stato inserito"; 
   }
 }
+  catch (PDOexception $e){
+    echo "<script>alert('PDOexception Autista')</script>";
+  }
+}
 else{
+  try{
   $mioquery=$dbh->prepare("INSERT INTO Passeggero(cognome, nome,username,email,password,telefono,data_nascita,sesso,nazionalita) VALUES(:cognome,:nome,:username,:email,MD5(:password),:telefono,:data_nascita,:sesso,:nazionalita)");
   $mioquery->bindValue(":cognome",$cognome);
   $mioquery->bindValue(":nome",$nome);
@@ -42,7 +48,13 @@ else{
   $mioquery->bindValue(":nazionalita",$nazionalita);
   if(!$mioquery->execute()){
     echo "Non è stato inserito";
+    }
   }
+  catch (PDOexception $e){   
+     echo $e->getMessage();
+    echo "<script>alert('PDOexception Cliente')</script>";
+  }
+  
 }
 ?>
 

@@ -12,7 +12,7 @@ if(isset($_POST['LogOut'])){
 <body>
    <?php 
     if (isset($_SESSION['ID'])){
-      echo "<h1>  Sei loggato come ". $_SESSION["Nome"]."  ". $_SESSION["Cognome"] . "</h1>
+      echo "<h1>  Sei loggato come ". $_SESSION["nome"]."  ". $_SESSION["cognome"] . "</h1>
          <form method='POST'>
        <input type='submit' name='LogOut' value='LogOut' >
         </form>";

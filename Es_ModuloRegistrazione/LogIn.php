@@ -2,13 +2,13 @@
 include 'conn.php';
  // Starting Session
 session_start(); // Initializing Session
-  if (isset($_POST['btnLogin'])) {       
+if (isset($_POST['btnLogin'])) {       
     //Prendo la email e la password dal form
        $user=$_POST['LoginEmail'];    
        $pass=$_POST['LoginPassword'];
     //Converto la password in MD5
-       $pass=MD5($pass);
-       $mioquery=$dbh->prepare("SELECT * FROM utente WHERE utente.email=:email AND utente.password=:password;"); //query
+       $pass=MD5($pass);   
+       $mioquery=$dbh->prepare("SELECT * FROM Passeggero WHERE Passeggero.email=:email AND Passeggero.password=:password;"); //query
        $mioquery->bindValue(":email",$user);
        $mioquery->bindValue(":password",$pass);
     //Se la query si esegue con successo...
@@ -16,21 +16,50 @@ session_start(); // Initializing Session
         $cuenta = $mioquery->rowCount(); //conta le righe che vengono come risultato della query
         $row=$mioquery->fetch(); 
           if ($cuenta == 1) {
-             $_SESSION['ID']=$row['ID']; 
-             $_SESSION['Nome']=$row['Nome'];
-             $_SESSION['Cognome']=$row['Cognome'];
-             $_SESSION['Email']=$row['Email'];
-             $_SESSION['Sesso']=$row['Sesso'];
-            header("location: Dashboard.php"); // Redirecting To Other Page        
+              $_SESSION['modo']='passeggero';
+              $_SESSION['ID']=$row['id']; 
+              $_SESSION['cognome']=$row['cognome'];
+              $_SESSION['nome']=$row['nome'];
+              $_SESSION['username']=$row['username'];
+              $_SESSION['email']=$row['email'];             
+              $_SESSION['telefono']=$row['telefono'];
+              $_SESSION['data_nascita']=$row['data_nascita'];
+              $_SESSION['sesso']=$row['sesso'];
+              $_SESSION['nazionalita']=$row['nazionalita'];
+              header("location: Dashboard.php"); // Redirecting To Other Page        
           }
-        //Se c'è un errore...
-          else {
-             session_destroy();
+     }       //Se non c'è tra i clienti
+     else{
+        $mioquery=$dbh->prepare("SELECT * FROM Autista WHERE Autista.email=:email AND Autista.password=:password;"); //query
+        $mioquery->bindValue(":email",$user);
+        $mioquery->bindValue(":password",$pass);
+        //Se la query si esegue con successo...
+        if($mioquery->execute()){ 
+        $cuenta = $mioquery->rowCount(); //conta le righe che vengono come risultato della query
+        $row=$mioquery->fetch(); 
+            if ($cuenta == 1) {
+                $_SESSION['modo']='passeggero';
+                $_SESSION['ID']=$row['id']; 
+                $_SESSION['cognome']=$row['cognome'];
+                $_SESSION['nome']=$row['nome'];
+                $_SESSION['username']=$row['username'];
+                $_SESSION['email']=$row['email'];             
+                $_SESSION['telefono']=$row['telefono'];
+                $_SESSION['data_nascita']=$row['data_nascita'];
+                $_SESSION['sesso']=$row['sesso'];
+                $_SESSION['nazionalita']=$row['nazionalita'];
+                $_SESSION['numero_patente']=$row['numero_patente'];
+                $_SESSION['scadenza_patente']=$row['scadenza_patente'];
+                header("location: Dashboard.php"); // Redirecting To Other Page        
+            }
+        }
+          //Se la email e la password non si trovano neanche tra gli Autisti
+        else{
+            session_destroy();
             echo "<script>alert('Email o password errata);window.location.href='LogIn.php';</script>";
-           
-          }
-      }
+        }
   }
+}
 ?>
 </script>
   <html>
