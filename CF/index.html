@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>CheckFilm</title>
+  <meta charset="utf-8" />
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="ParteScript.js" type="text/javascript"></script>
+</head>
+<body>
+  <h1>Benvenuto</h1>
+     <button id="btn_prova" name ="mostrafilm">mostra</button>
+    <p>    
+    </p>
+     <table id="table_film">      
+    </table>   
+  <button id="btn_aprilogin">Login</button>
+  <button id="btn_aprisignup">Sign Up</button>
+  <!--LOGIN----------------------------------------------------------------------------------------->
+  <div id="div_login">
+    <form action="" method="post" id="formLogin">
+      <div class="card">
+        <div class="card-header">
+          <h1 align="center"> Log In</h1>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <legend class="col-md-3 col-sm-12 col-form-label">Email</legend>
+            <div class="col-md-8 col-sm-12">
+              <input type="email" class="form-control " placeholder="Email" id="LoginEmail" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <legend class="col-md-3 col-sm-12 col-form-label">Password</legend>
+            <div class="col-md-8 col-sm-12">
+              <input type="password" class="form-control " placeholder="Password" id="LoginPassword" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" id="btnLogin">Entra</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!--SIGNUP----------------------------------------------------------------------------------------->  
+  <div id="div_signup">
+    <form action="" method="post" id="mioform" onSubmit="return verifica()">
+      <div class="card">
+        <div class="card-header">
+          <h1 align="center"> Sign Up</h1>
+        </div>
+        <div class="card-body">
+          <!--username-->
+          <div class="form-group">
+            <label>Nickname</label>
+            <input type="text" class="form-control" placeholder="Nickname" id="nickname" autocomplete="off" required>
+          </div>
+          <!--cognome-->
+          <div class="form-group">
+            <label>Cognome:</label>
+            <input type="text" class="form-control" placeholder="Cognome" id="cognome" autocomplete="off" required>
+          </div>
+          <!--nome-->
+          <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control" placeholder="Nome" id="nome" autocomplete="off" required>
+          </div>
+          <!--sesso-->
+          <div class="form-group">
+            <label>Sesso:</label> </br>
+            <label class="checkbox-inline"> <input type="radio" id="M" value="M" required/> M </label>
+            <label class="checkbox-inline"> <input type="radio" id="F" value="F" required/> F </label>
+          </div>
+          <!--datanascita-->
+          <div class="form-group">
+            <label>Data di nascita: </label>
+            <input type="date" class="form-control" id="datanascita" required>
+
+          </div>
+          <!--email-->
+          <div class="form-group">
+            <label>Email: </label>
+            <input type="email" class="form-control" placeholder="example@gmail.com" id="email" autocomplete="off" required>
+          </div>
+          <!--password-->
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password" id="password" required>
+          </div>
+          <!--confirm_password-->
+          <div class="form-group">
+            <label>Conferma password</label>
+            <input type="password" class="form-control" placeholder="Conferma password" id="confirm_password" required>
+          </div>
+
+          <!--immagine di profilo-->
+          <div class="form-group">
+            <label>Scegli immagine di profilo</label>
+            <input type="file" class="form-control" id="propic">
+          </div>
+        </div>
+          <div class="card-footer" align="center">
+
+            <button type="reset" class="btn btn-secondary">Annulla</button>
+            <button type="submit" class="btn btn-danger" id="btn_confermasignup" id="btn_confermasignup" onclick="verifica()">Conferma</button>
+
+          </div>
+        </div>
+
+    </form>
+
+    </div>
+ 
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" type="text/css" href="my_CSS.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript"  src="controller.js"></script>
+  <title>VIEW</title>
+
+</head>
+
+<body style="background-color:gray;">
+  <div class="container">
+    <h1 align="center">METEO</h1>
+    <br>
+    <div class="row">
+      <!------WEATHER-------------------------------------------------------------------------------------------->
+      <div class="col-md-6 color-sm-12">
+        <div class="card border-light css-sfondo-card " style="background-color:Transparent;">
+          <div class="card-header bg-danger border-light">
+            <p id="oraesatta">
+              <b>Weather:</b>
+            </p>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <b id="nomecitta">Scrivere la citta'...  </b> <br>
+              </br>
+              <tr>
+                <td>Main</td>
+                <td id="t1_main"> </td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td id="t1_desc"></td>
+              </tr>
+              <tr>
+                <td>Temperature</td>
+                <td id="t1_temp"></td>
+              </tr>
+              <tr>
+                <td>Pressure</td>
+                <td id="t1_press"></td>
+              </tr>
+              <tr>
+                <td>Humidity</td>
+                <td id="t1_hum"></td>
+              </tr>
+              <tr>
+                <td>Wind speed</td>
+                <td id="t1_wspeed"></td>
+              </tr>
+              <tr>
+                <td>Wind deg</td>
+                <td id="t1_wdeg"></td>
+              </tr>
+              <tr>
+                <td>Visibility</td>
+                <td id="t1_vis"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer border-light">
+            <!---textbox di ricerca e button--->
+            <div class="form-group row">
+              <div class="col-md-5">
+                <label>Location search by name:</label>
+              </div>
+              <div class="col-md-5">
+                <input class="form-control form-control-sm" id="luogo" autocomplete="off" placeholder="Scrivi qui">
+              </div>
+              <div class="col-md-1">
+                <button id="searchW" class="btn btn-success">
+              Cerca
+            </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---FORECAST----------------------------------------------------------------------->
+      <div class="col-md-6 color-sm-12">
+        <div class="card border-light css-sfondo-card  " style="background-color:Transparent;">
+          <div class="card-header text-white bg-primary border-light">
+            <b>
+              Forecast
+            </b>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <p id="nomecittaF">Scrivere il nome della citta'... </p>
+              <b id="textdt">Select a date/time:  <select id="selectDT"></select> </b> <br></br>
+              <tr>
+                <td>Main</td>
+                <td id="t1_mainF"> </td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td id="t1_descF"></td>
+              </tr>
+              <tr>
+                <td>Temperature</td>
+                <td id="t1_tempF"></td>
+              </tr>
+              <tr>
+                <td>Pressure</td>
+                <td id="t1_pressF"></td>
+              </tr>
+              <tr>
+                <td>Humidity</td>
+                <td id="t1_humF"></td>
+              </tr>
+              <tr>
+                <td>Wind speed</td>
+                <td id="t1_wspeedF"></td>
+              </tr>
+              <tr>
+                <td>Wind deg</td>
+                <td id="t1_wdegF"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-footer border-light">
+            <!---textbox di ricerca e button--->
+            <div class="form-group row">
+              <div class="col-md-4">
+                <label>Location search by name:</label>
+              </div>
+              <div class="col-md-5">
+                <input id="luogoF" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-2">
+                <button id="searchF" class="btn btn-success"> Cerca </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
