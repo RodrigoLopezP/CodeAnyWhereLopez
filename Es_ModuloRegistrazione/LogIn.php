@@ -26,7 +26,10 @@ if (isset($_POST['btnLogin'])) {
               $_SESSION['data_nascita']=$row['data_nascita'];
               $_SESSION['sesso']=$row['sesso'];
               $_SESSION['nazionalita']=$row['nazionalita'];
-              header("location: Dashboard.php"); // Redirecting To Other Page        
+              header("location: Dashboard.php"); // Redirecting To Other Page 
+            else{
+               echo "<script>alert('')</script>";
+            }
           }
      }       //Se non c'è tra i clienti
      else{
