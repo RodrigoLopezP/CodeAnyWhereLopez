@@ -1,61 +1,96 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <title>CheckFilm</title>
-  <meta charset="utf-8" />
-  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <!--file allegati---->
   <script src="ParteScript.js" type="text/javascript"></script>
 </head>
+
 <body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="navbar-expand-lg d-flex justify-content-start">
+      <a class="navbar-brand " href="#">CheckFilm</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Scopri</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-expand-lg d-flex justify-content-center">
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button type="button" class="btn btn-default btn-md">
+            <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="navbar-expand-lg d-flex justify-content-end">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <img src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" class="img-circle" width="40" height="40">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Utente</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <h1>Benvenuto</h1>
-     <button id="btn_prova" name ="mostrafilm">mostra</button>
-    <p>    
-    </p>
-     <table id="table_film">      
-    </table>   
+  <button id="btn_prova" name="mostrafilm">mostra</button>
+  <p>
+  </p>
+  <table id="table_film">
+  </table>
   <button id="btn_aprilogin">Login</button>
   <button id="btn_aprisignup">Sign Up</button>
-  <!--LOGIN----------------------------------------------------------------------------------------->
+
+
+
+  <!--LOGIN-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
   <div id="div_login">
-    <form action="" method="post" id="formLogin">
-      <div class="card">
-        <div class="card-header">
-          <h1 align="center"> Log In</h1>
-        </div>
-        <div class="card-body">
-          <div class="form-group row">
-            <legend class="col-md-3 col-sm-12 col-form-label">Email</legend>
-            <div class="col-md-8 col-sm-12">
-              <input type="email" class="form-control " placeholder="Email" id="LoginEmail" autocomplete="off" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <legend class="col-md-3 col-sm-12 col-form-label">Password</legend>
-            <div class="col-md-8 col-sm-12">
-              <input type="password" class="form-control " placeholder="Password" id="LoginPassword" autocomplete="off" required>
-            </div>
+    <div class="card">
+      <div class="card-header">
+        <h1 align="center"> Log In</h1>
+      </div>
+      <div class="card-body">
+        <div class="form-group row">
+          <legend class="col-md-3 col-sm-12 col-form-label">Email</legend>
+          <div class="col-md-8 col-sm-12">
+            <input type="email" class="form-control " placeholder="Email" id="login_email" autocomplete="off" required>
           </div>
         </div>
-        <div class="card-footer">
-          <button type="submit" id="btnLogin">Entra</button>
+        <div class="form-group row">
+          <legend class="col-md-3 col-sm-12 col-form-label">Password</legend>
+          <div class="col-md-8 col-sm-12">
+            <input type="password" class="form-control " placeholder="Password" id="login_password" autocomplete="off" required>
+          </div>
         </div>
       </div>
-
-    </form>
+      <div class="card-footer">
+        <button type="submit" id="btn_login">Entra</button>
+      </div>
+    </div>
   </div>
-
-  <!--SIGNUP----------------------------------------------------------------------------------------->  
+  <!--SIGNUP--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
   <div id="div_signup">
-    <form action="" method="post" id="mioform" onSubmit="return verifica()">
-      <div class="card">
-        <div class="card-header">
-          <h1 align="center"> Sign Up</h1>
-        </div>
-        <div class="card-body">
+    <div class="card">
+      <div class="card-header">
+        <h1 align="center"> Sign Up</h1>
+      </div>
+      <div class="card-body">
+        <form>
           <!--username-->
           <div class="form-group">
             <label>Nickname</label>
@@ -70,12 +105,6 @@
           <div class="form-group">
             <label>Nome:</label>
             <input type="text" class="form-control" placeholder="Nome" id="nome" autocomplete="off" required>
-          </div>
-          <!--sesso-->
-          <div class="form-group">
-            <label>Sesso:</label> </br>
-            <label class="checkbox-inline"> <input type="radio" id="M" value="M" required/> M </label>
-            <label class="checkbox-inline"> <input type="radio" id="F" value="F" required/> F </label>
           </div>
           <!--datanascita-->
           <div class="form-group">
@@ -104,19 +133,19 @@
             <label>Scegli immagine di profilo</label>
             <input type="file" class="form-control" id="propic">
           </div>
-        </div>
-          <div class="card-footer" align="center">
+        </form>
+      </div>
+      <div class="card-footer" align="center">
 
-            <button type="reset" class="btn btn-secondary">Annulla</button>
-            <button type="submit" class="btn btn-danger" id="btn_confermasignup" id="btn_confermasignup" onclick="verifica()">Conferma</button>
+        <button type="reset" class="btn btn-secondary">Annulla</button>
+        <button type="submit" class="btn btn-danger" id="btn_confermasignup">Conferma</button>
 
-          </div>
-        </div>
-
-    </form>
-
+      </div>
     </div>
- 
+
+
+
+  </div>
 </body>
 
 </html>

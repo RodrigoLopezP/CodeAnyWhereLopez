@@ -11,7 +11,7 @@ switch($var){
     break;
 }
   try{
-     $querymostra=dbh->($query);
+     $querymostra=$dbh->prepare($query);
     if($querymostra->execute()){
       while($row=$querymostra->fetch()){
         $mioarray[]=$row;
