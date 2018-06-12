@@ -2,7 +2,7 @@
 include 'conn.php';
  // Starting Session
 session_start(); // Initializing Session
-if (isset($_POST['btnLogin'])) {       
+if (isset($_POST['btnLogin'])) {
     //Prendo la email e la password dal form
        $user=$_POST['LoginEmail'];    
        $pass=$_POST['LoginPassword'];
