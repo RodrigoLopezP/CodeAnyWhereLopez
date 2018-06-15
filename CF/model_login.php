@@ -21,14 +21,16 @@ else {
         $row    = $mioquery->fetch();
         if ($cuenta == 1) {
             $_SESSION['array_utente']   = array();
-            $_SESSION['array_utente'][] = $row['id_utente'];
-            $_SESSION['array_utente'][] = $row['nickname'];
-            $_SESSION['array_utente'][] = $row['nome'];
-            $_SESSION['array_utente'][] = $row['cognome'];
-            $_SESSION['array_utente'][] = $row['data_nascita'];
-            $_SESSION['array_utente'][] = $row['email'];
-            $_SESSION['array_utente'][] = $row['password'];
-            echo json_encode($_SESSION['array_utente']);
+            $_SESSION['array_utente'][] = $row['id_utente']; //0
+            $_SESSION['array_utente'][] = $row['nickname'];  //1 
+            $_SESSION['array_utente'][] = $row['nome'];      //2
+            $_SESSION['array_utente'][] = $row['cognome'];   //3
+            $_SESSION['array_utente'][] = $row['data_nascita'];//4
+            $_SESSION['array_utente'][] = $row['email'];      //5
+            $_SESSION['array_utente'][] = $row['password'];   //6
+            $_SESSION['array_utente'][] =base64_encode($row["propic"]);   //7
+          
+            echo json_encode($_SESSION['array_utente']);   
             
         } else {
             session_destroy();

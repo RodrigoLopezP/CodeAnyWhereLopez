@@ -1,27 +1,51 @@
 $(document).ready(function() {
- 
+
   $("#div_signup").hide();
 
   var utente_loggato = [];
   verifica_login();
   
-  
-  
+
+
   function verifica_login() {
     $.getJSON("model_login.php", function(result) {
       if (result == "UtenteNonTrovato") {
         alert(result);
       } else if (result == "Error_query") {
         alert(result);
-      }
-      else{
-        utente_loggato=result;
-        alert(result);
+      } else {
+        utente_loggato = result;
+        $("#utente_nickname").append(utente_loggato[1]);
+        $("#utente_nome").append(utente_loggato[2]);
+        $("#utente_cognome").append(utente_loggato[3]);
+        $("#utente_datanascita").append(utente_loggato[4]);
+        $("#utente_email").append(utente_loggato[5]);
+        $("#utente_password").append(utente_loggato[6]);
+        if(utente_loggato[7]!== null){
+           $("#utente_propic").append("<img src='data:image/jpeg;base64,"+ utente_loggato[7] +"' class='rounded-circle' alt='immagine_profilo' width='300' height='300'>");
+         }
+        else{
+        $("#utente_propic").append("<img src='https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png' class='rounded-circle' alt='immagine_profilo' width='300' height='300'>");
+       }
       }
     });
   }
+  
+ 
 
+//----------------LOGOUT-----------------------------------------------------
+  $("#btn_logout").click(function() {
+    $.getJSON("model_logout.php", function(result) {
+      if(result===true){
+      alert('Disconessione effettuata.');
+      location.href = 'index.html';
+      }
+      else{
+       alert('Devi prima fare login');
+      }
+      });
 
+  });
   $("#btn_aprilogin").click(function() {
     $("#div_login").show();
     if ($('#div_signup').is(':visible')) {
@@ -82,7 +106,7 @@ $(document).ready(function() {
     $.getJSON("model_prova.php", function(result) { //prende il risultato di un foglio php
       $("#table_film").empty();
       for (var i in result) {
-        $("#table_film").append("<tr><td>" + result[i].nome + "</td><td>" + result[i].cognome + "</td><td>" + result[i].email + "</td><td>" + result[i].password + "</td></tr>");
+        $("#table_film").append("<tr><td>" + result[i].nome + "</td><td>" + result[i].cognome + "</td><td>" + result[i].email + "</td><td>" + result[i].propic + "</td></tr>");
       }
     });
   });
