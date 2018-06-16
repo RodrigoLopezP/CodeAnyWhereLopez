@@ -19,7 +19,7 @@ try{
   $mioquery->bindValue(":data_nascita",$data_nascita);
     $mioquery->bindValue(":propic",$propic);
   $mioquery->execute();
-  echo json_encode("ciao");
+  echo json_encode("Registrazione eseguita");
 }
   catch (PDOexception $e){
     echo json_encode($e->getMessage());
