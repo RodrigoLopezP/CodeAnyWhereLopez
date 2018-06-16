@@ -21,49 +21,38 @@
   <!--------NAVBAR---------------------------------------------------------------------------------------------------->
   <nav class="navbar navbar-dark bg-dark">
     <div class="navbar-expand-lg d-flex justify-content-start ">
-      <a class="navbar-brand " href="#">CheckFilm</a>
-      <ul class="navbar-nav" id="agg_film">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Scopri</a>
-        </li>
-      </ul>
-    </div>
-    <div class="navbar-expand-lg d-flex justify-content-center">
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button type="button" class="btn btn-default btn-md">
-            <i class="fa fa-search"></i>
-        </button>
-      </form>
-    </div>
-    <div class="navbar-expand-lg d-flex justify-content-end">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" id="btn_aprilogin" href="#">Login</a>
-        </li>
-      </ul>
+      <a class="navbar-brand " href="#"><img src='CFlogo_small.png'   width='40' height='40'></a>
     </div>
   </nav>
 
-  <h1>Benvenuto</h1>
+  <div class="mt-5 d-flex justify-content-center">
+    <h1>
+      Benvenuti su CheckFilm
+    </h1>
+  </div>
+  <div class="mt-5 d-flex justify-content-center">
+    <div class=" mx-3">
+       <button type="button" class="btn btn-dark btn-lg"  data-toggle="modal" data-target="#div_signup">Sign Up</button>
+    </div>
+   <div class=" mx-3">
+
+    <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#div_login">Login</button>
+    </div>
+  </div>
   <button id="btn_prova" name="mostrafilm">mostra</button>
-  <p>
-  </p>
   <table id="table_film">
   </table>
-  <button id="btn_aprisignup">Sign Up</button>
-
-
-
   <!--LOGIN-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <div class="container div_nascosto">
-
-    <div id="div_login">
-      <div class="card border-dark ">
-        <div class="card-header text-white bg-dark">
-          <h1 align="center"> Log In</h1>
+  <div id="div_login" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content border-dark ">
+        <div class="modal-header  text-white bg-dark">
+          <h5 class="modal-title" >Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         </div>
-        <div class="card-body">
+        <div class="modal-body">
           <div class="form-group row">
             <legend class="col-md-3 col-sm-12 col-form-label">Email</legend>
             <div class="col-md-8 col-sm-12">
@@ -77,78 +66,68 @@
             </div>
           </div>
         </div>
-        <div class="card-footer d-flex justify-content-center">
-          <button type="submit" id="btn_login" class="btn btn-success btn-lg">Entra</button>
+        <div class="modal-footer d-flex justify-content-center bg-dark">
+          <button type="submit" id="btn_login" class="btn btn-success btn-lg ">Entra</button>
         </div>
       </div>
     </div>
   </div>
-  
+
   <!--SIGNUP--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <div id="div_signup" class="div_nascosto">
-    <div class="container">
-
-
-      <div class="card">
-        <div class="card-header">
-          <h1 align="center"> Sign Up</h1>
+  <div id="div_signup" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content border-dark">
+        <div class="modal-header  text-white bg-dark">
+          <h5 class="modal-title" >Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         </div>
-        <div class="card-body">
-          <form>
-            <!--username-->
-            <div class="form-group">
-              <label>Nickname</label>
-              <input type="text" class="form-control" placeholder="Nickname" id="nickname" autocomplete="off" required>
-            </div>
-            <!--cognome-->
-            <div class="form-group">
-              <label>Cognome:</label>
-              <input type="text" class="form-control" placeholder="Cognome" id="cognome" autocomplete="off" required>
-            </div>
+        <div class="modal-body">
+                  <!--username-->
+          <div class="form-group">
+            <label>Nickname</label>
+            <input type="text" class="form-control" placeholder="Nickname" id="nickname" autocomplete="off" required>
+          </div>
             <!--nome-->
-            <div class="form-group">
-              <label>Nome:</label>
-              <input type="text" class="form-control" placeholder="Nome" id="nome" autocomplete="off" required>
-            </div>
-            <!--datanascita-->
-            <div class="form-group">
-              <label>Data di nascita: </label>
-              <input type="date" class="form-control" id="datanascita" required>
+          <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control" placeholder="Nome" id="nome" autocomplete="off" required>
+          </div>
+          <!--cognome-->
+          <div class="form-group">
+            <label>Cognome:</label>
+            <input type="text" class="form-control" placeholder="Cognome" id="cognome" autocomplete="off" required>
+          </div>
+        
+          <!--datanascita-->
+          <div class="form-group">
+            <label>Data di nascita: </label>
+            <input type="date" class="form-control" id="datanascita" required>
 
-            </div>
-            <!--email-->
-            <div class="form-group">
-              <label>Email: </label>
-              <input type="email" class="form-control" placeholder="example@gmail.com" id="email" autocomplete="off" required>
-            </div>
-            <!--password-->
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" id="password" required>
-            </div>
-            <!--confirm_password-->
-            <div class="form-group">
-              <label>Conferma password</label>
-              <input type="password" class="form-control" placeholder="Conferma password" id="confirm_password" required>
-            </div>
-
-            <!--immagine di profilo-->
-            <div class="form-group">
-              <label>Scegli immagine di profilo</label>
-              <input type="file" class="form-control" id="propic">
-            </div>
-          </form>
+          </div>
+          <!--email-->
+          <div class="form-group">
+            <label>Email: </label>
+            <input type="email" class="form-control" placeholder="example@gmail.com" id="email" autocomplete="off" required>
+          </div>
+          <!--password-->
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password" id="password" required>
+          </div>
+          <!--confirm_password-->
+          <div class="form-group">
+            <label>Conferma password</label>
+            <input type="password" class="form-control" placeholder="Conferma password" id="confirm_password" required>
+          </div>
         </div>
-        <div class="card-footer" align="center">
-
-          <button type="reset" class="btn btn-secondary">Annulla</button>
+        <div class="modal-footer d-flex justify-content-center bg-dark">
+                  <button type="reset" class="btn btn-secondary">Annulla</button>
           <button type="submit" class="btn btn-danger" id="btn_confermasignup">Conferma</button>
-
         </div>
       </div>
     </div>
-
-
   </div>
 </body>
 
