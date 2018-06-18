@@ -20,9 +20,7 @@ else {
         $cuenta = $mioquery->rowCount(); //conta le righe che vengono come risultato della query
         $row    = $mioquery->fetch();
         if ($cuenta == 1) {
-            $_SESSION['array_utente']   = $row;
-         $_SESSION['array_utente'][7]= base64_encode($_SESSION['array_utente']->onload);
-           // $_SESSION['array_utente'][7] =base64_encode($row["propic"]);   //7       
+            $_SESSION['array_utente']   = $row;     
             echo json_encode($_SESSION['array_utente']);            
         } else {
             session_destroy();

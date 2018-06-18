@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>CheckFilm</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -15,14 +14,15 @@
   <script src="controller_CF.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="CSS_CF.css">
 </head>
+
 <body class="cf_sfondo">
   <!------barra di navigazione--------------------------------------------------------------->
   <nav class="navbar navbar-dark bg-dark mb-4">
     <div class="navbar-expand-lg d-flex justify-content-start collapse ">
-      <a class="navbar-brand " href="#">CheckFilm</a>
+      <a class="navbar-brand " href="view_scopri.html"><img src='CFlogo_small.png'   width='40' height='40'></a>
       <ul class="navbar-nav" id="agg_film">
         <li class="nav-item">
-          <a class="nav-link" href="view_scopri.html">Scopri</a>
+          <a class="nav-link cf_testo" href="view_scopri.html">Scopri</a>
         </li>
       </ul>
     </div>
@@ -46,7 +46,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <img src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" class="img-circle" width="40" height="40">
+          <img src="CF-userboy.png" class="img-circle" width="40" height="40">
         </li>
       </ul>
     </div>
@@ -62,22 +62,16 @@
           <div class="card-body ">
             <ul class="list-group list-group-flush ">
               <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_film">Film</a>
-              <ul class="list-group list-group-flush div_nascosto gestione_menu " id="opzioni_film">
+              <ul class="list-group list-group-flush div_nascosto" id="opzioni_film">
                 <a href="#" id="a_aggfilm" class="list-group-item list-group-item-action font-weight-light">Aggiungi</a>
                 <a href="#" id="a_modfilm" class="list-group-item list-group-item-action font-weight-light">Modifica</a>
-                <a href="#" id="a_elifilm"class="list-group-item list-group-item-action font-weight-light">Elimina</a>
+                <a href="#" id="a_elifilm" class="list-group-item list-group-item-action font-weight-light">Elimina</a>
               </ul>
               <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_regista">Regista</a>
-              <ul class="list-group list-group-flush div_nascosto gestione_menu bg-secondary text-white" id="opzioni_regista">
+              <ul class="list-group list-group-flush div_nascosto bg-secondary text-white" id="opzioni_regista">
                 <a href="#" id="a_aggregista" class="list-group-item list-group-item-action font-weight-light">Aggiungi</a>
                 <a href="#" id="a_modregista" class="list-group-item list-group-item-action font-weight-light">Modifica</a>
                 <a href="#" id="a_eliregista" class="list-group-item list-group-item-action font-weight-light">Elimina</a>
-              </ul>
-              <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_attore">Attore</a>
-              <ul class="list-group list-group-flush div_nascosto gestione_menu" id="opzioni_attore">
-                <a href="#" id="a_aggattore" class="list-group-item list-group-item-action font-weight-light">Aggiungi</a>
-                <a href="#" id="a_modattore" class="list-group-item list-group-item-action font-weight-light">Modifica</a>
-                <a href="#" id="a_eliattore" class="list-group-item list-group-item-action font-weight-light">Elimina</a>
               </ul>
             </ul>
           </div>
@@ -92,49 +86,61 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
+                <label class="col-sm-2 col-form-label" >Nome film: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggfilm_nome" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
+                <label class="col-sm-2 col-form-label">Regista: </label>
+                <div class="col-sm-5 ">
+                  <div>
+                    <select class="form-control" id="select_regista">                    
+                  </select>
+                  </div>
+                </div>
+                <label class="col-sm-5 col-form-label font-italic">          
+                  Se non trovi il regista, aggiungilo
+                </label>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Anno: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggfilm_anno" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
+                <label class="col-sm-2 col-form-label">Genere: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggfilm_genere" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
+                <label class="col-sm-2 col-form-label">Link Wikipedia: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" placeholder="https://it.wikipedia.org/wiki/" id="aggfilm_link" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
+                <label class="col-sm-2 col-form-label">Durata: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggfilm_durata" required>
                 </div>
+                <label class="col-sm-5 col-form-label font-italic" >          
+                  minuti
+                </label>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
+                <label class="col-sm-2 col-form-label">Immagine: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" placeholder="https://...jpg" id="aggfilm_img" required>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer bg-dark">
-            <button>
+            <button id="btn_aggfilm">
               Aggiungi
-            </button>
-            <button>
-              Cancella
             </button>
           </div>
         </div>
@@ -252,49 +258,46 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
+                <label class="col-sm-2 col-form-label">Nome: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggregista_nome">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Cognome: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggregista_cognome">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Paese:</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggregista_paese">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Data nascita:</label>
+                <div class="col-sm-5">
+                  <input type="date" class="form-control" id="aggregista_datanascita">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
+                <div class="col-sm-5">
+                  <input type="input" class="form-control" id="aggregista_img">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="aggregista_link">
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer bg-dark">
-            <button>
+            <button id="btn_aggregista">
               Aggiungi
-            </button>
-            <button>
-              Cancella
             </button>
           </div>
         </div>
@@ -354,166 +357,6 @@
         <div class="card border-dark div_nascosto" id="card_eliregista">
           <div class="card-header font-weight-bold text-white bg-dark">
             Elimina regista
-          </div>
-          <div class="card-body">
-            <div class="container">
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer bg-dark">
-            <button>
-              Aggiungi
-            </button>
-            <button>
-              Cancella
-            </button>
-          </div>
-        </div>
-        <!----------------ATTORE------------------------------------------------>
-        <div class="card border-dark div_nascosto" id="card_aggattore">
-          <div class="card-header font-weight-bold text-white bg-dark">
-            Aggiungi attore
-          </div>
-          <div class="card-body">
-            <div class="container">
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer bg-dark">
-            <button>
-              Aggiungi
-            </button>
-            <button>
-              Cancella
-            </button>
-          </div>
-        </div>
-        <div class="card border-dark div_nascosto" id="card_modattore">
-          <div class="card-header font-weight-bold text-white bg-dark">
-            Modifica attore
-          </div>
-          <div class="card-body">
-            <div class="container">
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer bg-dark">
-            <button>
-              Aggiungi
-            </button>
-            <button>
-              Cancella
-            </button>
-          </div>
-        </div>
-        <div class="card border-dark div_nascosto" id="card_eliattore">
-          <div class="card-header font-weight-bold text-white bg-dark">
-            Elimina attore
           </div>
           <div class="card-body">
             <div class="container">
