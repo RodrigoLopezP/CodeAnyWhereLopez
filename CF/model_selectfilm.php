@@ -1,8 +1,8 @@
 <?php
 include 'DB_conn.php';
 
-$query="SELECT film.*, regista.*
-FROM film  INNER JOIN regista ON regista.id_regista=film.id_regista";
+$query="SELECT film.*, regista.nome,regista.cognome
+FROM film  INNER JOIN regista ON regista.id_regista=film.id_regista ORDER BY film.nome_film";
 $mioarray=array();
 try{
     $ex_query=$dbh->prepare($query); // prepari la query

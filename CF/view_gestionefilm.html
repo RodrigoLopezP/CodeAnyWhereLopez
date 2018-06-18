@@ -26,14 +26,7 @@
         </li>
       </ul>
     </div>
-    <div class="navbar-expand-lg d-flex justify-content-center">
-      <form class="form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search">
-        <button type="button" class="btn btn-default btn-md">
-            <i class="fa fa-search"></i>
-        </button>
-      </form>
-    </div>
+
     <div class="navbar-expand-lg d-flex justify-content-end btn-group">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -59,7 +52,7 @@
           <div class="card-header font-weight-bold text-white bg-dark">
             Opzioni
           </div>
-          <div class="card-body ">
+          <div class="card-body">
             <ul class="list-group list-group-flush ">
               <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_film">Film</a>
               <ul class="list-group list-group-flush div_nascosto" id="opzioni_film">
@@ -86,16 +79,16 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label" >Nome film: </label>
+                <label class="col-sm-2 col-form-label">Nome film: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggfilm_nome" required>
+                  <input type="input" class="form-control" id="aggfilm_nome">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Regista: </label>
+                <label class="col-sm-2 col-form-label ">Regista: </label>
                 <div class="col-sm-5 ">
                   <div>
-                    <select class="form-control" id="select_regista">                    
+                    <select class="form-control select_regista" id="aggfilm_selectregista" style="height:5" >                    
                   </select>
                   </div>
                 </div>
@@ -106,35 +99,38 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Anno: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggfilm_anno" required>
+                  <input type="input" class="form-control" id="aggfilm_anno">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Genere: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggfilm_genere" required>
+                  <input type="input" class="form-control" id="aggfilm_genere">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Link Wikipedia: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" placeholder="https://it.wikipedia.org/wiki/" id="aggfilm_link" required>
+                  <input type="input" class="form-control" placeholder="https://it.wikipedia.org/wiki/" id="aggfilm_link">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Durata: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggfilm_durata" required>
+                  <input type="input" class="form-control" id="aggfilm_durata">
                 </div>
-                <label class="col-sm-5 col-form-label font-italic" >          
+                <label class="col-sm-5 col-form-label font-italic">          
                   minuti
                 </label>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Immagine: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" placeholder="https://...jpg" id="aggfilm_img" required>
+                  <input type="input" class="form-control" placeholder="https://...jpg" id="aggfilm_img">
                 </div>
+                <div class="col-sm-5"> </div>
+              </div>
+              <div class="form-group row d-flex justify-content-center" id="aggfilm_visimg">
               </div>
             </div>
           </div>
@@ -151,40 +147,54 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                <label class="col-sm-2 col-form-label font-weight-bold">Scegli film: </label>
+                <div class="col-sm-5 ">
+                  <div>
+                    <select class="form-control" id="modfilm_select">                    
+                  </select>
+                  </div>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
+              <div class="form-group row modfilm-fade " id="prova">
+                <label class="col-sm-2 col-form-label">Nome film: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_nome" required>
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row modfilm-fade">
+                <label class="col-sm-2 col-form-label">Regista: </label>
+                <div class="col-sm-5 ">
+                  <div>
+                    <select class="form-control select_regista">                    
+                  </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row modfilm-fade ">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_anno">
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row modfilm-fade">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_link">
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row modfilm-fade">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_durata">
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row modfilm-fade">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control " id="modfilm_img">
                 </div>
+              </div>
+                            <div class="form-group row d-flex justify-content-center" id="modfilm_visimg">
               </div>
             </div>
           </div>
@@ -282,16 +292,18 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggregista_img">
+                  <input type="input" class="form-control" id="aggregista_link" placeholder="https://it.wikipedia.org/wiki/">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="aggregista_link">
+                  <input type="input" class="form-control" placeholder="https://...jpg" id="aggregista_img">
                 </div>
+              </div>
+                <div class="form-group row d-flex justify-content-center" id="aggregista_visimg">
               </div>
             </div>
           </div>
@@ -308,39 +320,42 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome film</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                <label class="col-sm-2 col-form-label">Scegli film: </label>
+                <div class="col-sm-5 ">
+                  <div>
+                    <select class="form-control" id="modregista_select">                    
+                  </select>
+                  </div>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Regista</label>
+              <div class="form-group row modefilm-fade div_nascosto">
+                <label class="col-sm-2 col-form-label">Nome: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modregista_nome" required>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
+              <div class="form-group row modefilm-fade div_nascosto">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Paese: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_cognome">
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row modefilm-fade div_nascosto">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Data nascita:</label>
+                <div class="col-sm-5">
+                  <input type="input" class="form-control" id="modfilm_anno">
+                </div>
+              </div>
+              <div class="form-group row modefilm-fade div_nascosto">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_link">
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
+              <div class="form-group row modefilm-fade div_nascosto">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control">
+                  <input type="input" class="form-control" id="modfilm_durata">
                 </div>
               </div>
             </div>
