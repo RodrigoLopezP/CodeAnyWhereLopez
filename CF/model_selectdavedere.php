@@ -1,7 +1,7 @@
 <?php
 include 'DB_conn.php';
 $id_utente=$_GET["id_utente"];
-$query="SELECT film.nome_film, film.anno, film.picfilm 
+$query="SELECT film.nome_film, film.anno, film.picfilm , film.id_film, lista.visto
 FROM film INNER JOIN lista ON film.id_film=lista.id_film INNER JOIN utente ON lista.id_utente=utente.id_utente 
 WHERE utente.id_utente=:id_utente AND lista.visto=false;";
 $mioarray=array();

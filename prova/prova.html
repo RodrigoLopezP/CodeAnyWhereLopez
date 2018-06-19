@@ -77,6 +77,19 @@
     <td></td>
     <td><button class='btn btn_scoprifilm' id='' data-toggle='modal' data-target='#modal_scoprifilm'><i class='fa fa-info'></i></button></td>
   </tr>
+
+  <button id="btn_prova" name="mostrafilm">mostra</button>
+  <table id="table_film">
+  </table>
+  //-Lista di utenti---------------------------------------------------DA LEVARE----------------------------------------------------------
+  $("#btn_prova").click(function() {
+    $.getJSON("model_prova.php", function(result) { //prende il risultato di un foglio php
+      $("#table_film").empty();
+      for (var i in result) {
+        $("#table_film").append("<tr><td>" + result[i].nome + "</td><td>" + result[i].cognome + "</td><td>" + result[i].email + "</td></tr>");
+      }
+    });
+  });
 </body>
 
 </html>

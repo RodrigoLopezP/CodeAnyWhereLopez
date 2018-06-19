@@ -30,12 +30,12 @@
     <div class="navbar-expand-lg d-flex justify-content-end btn-group">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbar_nickname" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">         
+          <a class="nav-link dropdown-toggle " id="navbar_nickname" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">         
         </a>
           <div class="dropdown-menu navbar-dark " aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" id="navbar_profilo">Profilo</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item cf_logout" href="#">Log out</a>
+            <a class="dropdown-item cf_logout" href="#">Log out <i class="fa fa-sign-out"></i></a>
           </div>
         </li>
         <li class="nav-item">
@@ -163,33 +163,38 @@
               </div>
               <div class="form-group row modfilm-fade">
                 <label class="col-sm-2 col-form-label">Regista: </label>
-                <div class="col-sm-5 ">
-                  <div>
-                    <select class="form-control select_regista">                    
-                  </select>
-                  </div>
+                <div class="col-sm-5 ">                  
+                    <select class="form-control select_regista" id="modfilm_selectregista">                    
+                  </select>     
                 </div>
+                <label class="col-sm-5 col-form-label font-italic" id="modfilm_registacorrente"> </label>
               </div>
               <div class="form-group row modfilm-fade ">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Anno:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control" id="modfilm_anno">
                 </div>
               </div>
+               <div class="form-group row modfilm-fade ">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Genere: </label>
+                <div class="col-sm-5">
+                  <input type="input" class="form-control" id="modfilm_genere">
+                </div>
+              </div>             
               <div class="form-group row modfilm-fade">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control" id="modfilm_link">
                 </div>
               </div>
               <div class="form-group row modfilm-fade">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Durata:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control" id="modfilm_durata">
                 </div>
               </div>
               <div class="form-group row modfilm-fade">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control " id="modfilm_img">
                 </div>
@@ -199,8 +204,8 @@
             </div>
           </div>
           <div class="card-footer bg-dark">
-            <button>
-              Aggiungi
+            <button id="btn_modfilm">
+              Modifica
             </button>
             <button>
               Cancella
