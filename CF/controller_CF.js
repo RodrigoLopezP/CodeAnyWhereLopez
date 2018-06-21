@@ -1,13 +1,11 @@
 $(document).ready(function() {
   $("#index_logogrande").hide();
   $("#index_logogrande").fadeIn(4000);
-
   $("#navbar_profilo").click(function() {
     location.href = 'view_profilo.html';
   });
   var utente_loggato;
   verifica_login();
-
   function verifica_login() {
     $.getJSON("model_login.php", function(result) {
       if (result == "UtenteNonTrovato") {
@@ -32,10 +30,8 @@ $(document).ready(function() {
       }
     });
   }
-
-
-
-  //----------------LOGOUT-----------------------------------------------------
+  //------------------------------------------------index.html--------------------------------------------------------------------------------------------------
+  //----------------LOGOUT---------------------------
   $(".cf_logout").click(function() {
     $.getJSON("model_logout.php", function(result) {
       if (result === true) {
@@ -49,9 +45,7 @@ $(document).ready(function() {
 
   });
 
-
-
-  //-REGISTRAZIONE---------------------------------------------------------------------
+  //-REGISTRAZIONE-------------------------------
   $("#btn_confermasignup").click(function() {
 
     if ($("#password").val() != $("#confirm_password").val()) {
@@ -96,9 +90,7 @@ $(document).ready(function() {
     }
   });
 
-
-
-  //-LOGIN---------------------------------------------------------------------
+  //-LOGIN------------------------------
   $("#btn_login").click(function() {
     var login = {
       login_email: $("#login_email").val(),
@@ -120,10 +112,7 @@ $(document).ready(function() {
     });
   });
 
-
-
-
-  //---liste view_profilo.html-----------------------------------------------------
+  //---liste view_profilo.html-----------------------
   $("#apri_listadavedere").click(function() {
     var p = {
       id_utente: utente_loggato.id_utente,
@@ -140,13 +129,19 @@ $(document).ready(function() {
           id_film: $(this).attr('id'),
         }
         $.getJSON("model_updatefilmvisto.php", param, function(result1) {
-          ("#rowdavedere_"+param.id_film).hide();
+            $.getJSON("model_selectdavedere.php", p, function(listadavedereagg) { //prende il risultato di un foglio php
+      $("#table_davedere").empty();
+      $("#table_davedere").append("<thead><tr><th scope='col'></th><th scope='col'>Nome</th <th scope='col'>Last</th>  <th></th></tr> </thead>");
+      for (var i in result) {
+        $("#table_davedere").append("<tr id='rowdavedere_"+listadavedereagg[i].id_film+"'><td> <img  class='img-thumbnail border border-warning ' src='" + listadavedereagg[i].picfilm + "' width='80' height='120' ></img></td><td>" + listadavedereagg[i].nome_film + "</td><td><button id='" + listadavedereagg[i].id_film + "'  class='btn btn-sm btn-warning btn_filmvisto'><i class='fa fa-eye'></i></button></td></tr>");
+      }
         });
       });
 
     });
     $("#div_filmdavedere").slideDown("fast");
     $("#div_filmvisti").slideUp("fast");
+  });
   });
   $("#apri_listagiavisti").click(function() {
     var p = {
@@ -165,12 +160,11 @@ $(document).ready(function() {
     });
   });
 
-  //------------------------------------------------Animazione slide in view_gestionefilm.html-----------------------------------------------
+  //------------------------------------------------Animazione slide in view_gestionefilm.html-------------------------------------------------------------------
   $("#a_film").click(function() {
     $("#opzioni_film").slideToggle("fast");
   });
   $("#a_regista").click(function() {
-
     $("#opzioni_regista").slideToggle("fast");
   });
   //-----------
@@ -201,7 +195,10 @@ $(document).ready(function() {
     $("#card_gestione").children().slideUp("fast");
     $("#card_eliregista").slideDown("fast");
   });
-  //-----------view_gestionefilm.html-----------------------------------------------------------------------------------------------------------------------------
+  //-----------view_gestionefilm.html-----
+  $(".modfilm-fade").hide();
+  $(".modregista-fade").hide();
+  
   $.getJSON("model_selectregista.php", function(result) {
     for (var i in result) {
       $(".select_regista").append("<option id='" + result[i].id_regista + "'>" + result[i].nome + " " + result[i].cognome + "</option>");
@@ -212,22 +209,62 @@ $(document).ready(function() {
       $("#modfilm_select").append("<option id='" + result[i].id_film + "'>" + result[i].nome_film + "</option>");
     }
   });
-
+  
   $("#aggfilm_img").on('input propertychange paste', function() {
     $("#aggfilm_visimg").empty();
-    $("#aggfilm_visimg").append("<img class='img-thumbnail' alt=' no image ' src='" + $("#aggfilm_img").val() + "' width='240' height='360' >");
+    $("#aggfilm_visimg").append("<img class='img-thumbnail border border-warning' alt=' no image ' src='" + $("#aggfilm_img").val() + "' width='240' height='360' >");
   });
-
   $("#modfilm_img").on('input propertychange paste', function() {
     $("#modfilm_visimg").empty();
-    $("#modfilm_visimg").append("<img  class='img-thumbnail' alt=' no image ' src='" + $("#modfilm_img").val() + "' width='240' height='360' >");
+    $("#modfilm_visimg").append("<img  class='img-thumbnail border border-warning' alt=' no image ' src='" + $("#modfilm_img").val() + "' width='240' height='360' >");
   });
-
+  
   $("#aggregista_img").on('input propertychange paste', function() {
     $("#aggregista_visimg").empty();
-    $("#aggregista_visimg").append("<img  class='img-thumbnail' alt=' no image ' src='" + $("#aggregista_img").val() + "' width='240' height='360' >");
+    $("#aggregista_visimg").append("<img  class='img-thumbnail border border-warning' alt=' no image ' src='" + $("#aggregista_img").val() + "' width='240' height='360' >");
+  });
+  $("#modregista_img").on('input propertychange paste', function() {
+    $("#modregista_visimg").empty();
+    $("#modregista_visimg").append("<img  class='img-thumbnail border border-warning' alt=' no image ' src='" + $("#modregista_img").val() + "' width='240' height='360' >");
   });
 
+  $("#modfilm_select").change(function(result) {
+    $("#modfilm_visimg").empty();
+    $(".modfilm-fade").fadeOut();
+    var dati = {
+      id_film: $("#modfilm_select").children(":selected").attr("id"),
+    }
+    $.getJSON("model_selectunfilm.php", dati, function(result) {
+      $("#modfilm_nome").val(result.nome_film);
+      $("#modfilm_anno").val(result.anno);
+      $("#modfilm_durata").val(result.durata);
+      $("#modfilm_link").val(result.link_wiki);
+      $("#modfilm_img").val(result.picfilm);
+      $("#modfilm_genere").val(result.genere);
+      $("#modfilm_registacorrente").text("Regista attuale: " + result.nome + " " + result.cognome);
+      $("#modfilm_visimg").append("<img class='img-thumbnail border border-warning' alt=' no image ' src='" + result.picfilm + "' width='240' height='360' >");
+      $(".modfilm-fade").fadeIn("slow");
+    });
+  });
+  $("#modregista_select").change(function(result) {
+    $("#modregista_visimg").empty();
+    $(".modregista-fade").fadeOut();
+    var dati = {
+      id_regista: $("#modregista_select").children(":selected").attr("id"),
+    }
+    $.getJSON("model_selectunregista.php", dati, function(result) {
+      $("#modregista_nome").val(result.nome);
+      $("#modregista_cognome").val(result.cognome);
+      $("#modregista_paese").val(result.paese);
+      $("#modregista_datanascita").val(result.data_nascita);
+      $("#modregista_img").val(result.img_regista);
+      $("#modregista_link").val(result.link_wikipedia);
+      $("#modregista_datanascitacorrente").text("Data nascita attuale: "+result.data_nascita);
+      $("#modregista_visimg").append("<img class='img-thumbnail border border-warning' alt=' no image ' src='" + result.img_regista + "' width='240' height='360' >");
+      $(".modregista-fade").fadeIn("slow");
+    });
+  });
+  
   $("#btn_aggfilm").click(function() {
     if ($("#aggfilm_nome").val() === "" || $("#aggfilm_anno").val() === "" || $("#aggfilm_durata").val() === "" || $("#aggfilm_img").val() === "" || $("#aggfilm_genere").val() === "" || $("#aggfilm_link").val() === "") {
       alert("Riempi tutto il form");
@@ -254,47 +291,6 @@ $(document).ready(function() {
       });
     }
   });
-  $("#btn_aggregista").click(function() {
-    if ($("#aggregista_nome").val() === "" || $("#aggregista_cognome").val() === "" || $("#aggregista_paese").val() === "" || $("#aggregista_datanascita").val() === "" || $("#aggregista_link").val() === "") {
-      alert("Riempi tutto il form");
-    } else {
-      var dati = {
-        nome: $("#aggregista_nome").val(),
-        cognome: $("#aggregista_cognome").val(),
-        paese: $("#aggregista_paese").val(),
-        datanascita: $("#aggregista_datanascita").val(),
-        img: $("#aggregista_img").val(),
-        link: $("#aggregista_link").val(),
-      }
-      $.getJSON("model_insertregista.php", dati, function(result) {
-        $.getJSON("model_selectregista.php", function(result) { //prende i dati aggiornati dalla table regista
-          $(".select_regista").empty();
-          for (var i in result) {
-            $(".select_regista").append("<option id='" + result[i].id_regista + "'>" + result[i].nome + " " + result[i].cognome + "</option>"); //aggiorna la select senza bisogno di ricaricare la pagina
-          }
-        });
-        alert(result); //alert per sapere l'esito della operazione
-      });
-    }
-  });
-  $(".modfilm-fade").hide();
-  $("#modfilm_select").change(function(result) {
-    $(".modfilm-fade").fadeOut();
-    var dati = {
-      id_film: $("#modfilm_select").children(":selected").attr("id"),
-    }
-    $.getJSON("model_selectunfilm.php", dati, function(result) {
-      $("#modfilm_nome").val(result.nome_film);
-      $("#modfilm_anno").val(result.anno);
-      $("#modfilm_durata").val(result.durata);
-      $("#modfilm_link").val(result.link_wiki);
-      $("#modfilm_img").val(result.picfilm);
-      $("#modfilm_genere").val(result.genere);
-      $("#modfilm_registacorrente").text("regista corrente: " + result.nome + " " + result.cognome);
-      $(".modfilm-fade").fadeIn("slow");
-    });
-  });
-
   $("#btn_modfilm").click(function() {
     var modfilm_dati = {
       id_film: $("#modfilm_select").children(":selected").attr("id"),
@@ -312,14 +308,64 @@ $(document).ready(function() {
       $("#card_modfilm").slideUp();
     })
   });
-
-  //---MOSTRA FILM  in view_scopri.html-----------------------------------------------------
-
-
+  
+  $("#btn_aggregista").click(function() {
+    if ($("#aggregista_nome").val() === "" || $("#aggregista_cognome").val() === "" || $("#aggregista_paese").val() === "" || $("#aggregista_datanascita").val() === "" || $("#aggregista_link").val() === "") {
+      alert("Riempi tutti gli spazi prima di aggiungere");
+    } else {
+      var dati = {
+        nome: $("#aggregista_nome").val(),
+        cognome: $("#aggregista_cognome").val(),
+        paese: $("#aggregista_paese").val(),
+        datanascita: $("#aggregista_datanascita").val(),
+        img: $("#aggregista_img").val(),
+        link: $("#aggregista_link").val(),
+      }
+      $.getJSON("model_insertregista.php", dati, function(result) {
+        aggiorna_selectregista();
+        alert(result); //alert per sapere l'esito della operazione
+        $("#card_aggregista").slideUp();
+      });
+    }
+  });
+  $("#btn_modregista").click(function() {
+    if($("#modregista_nome").val()===""||$("#modregista_cognome").val()===""||$("#modregista_paese").val()===""||$("#modregista_datanascita").val()==="" ){
+        alert("Riempi tutti gli spazi prima di modificare");
+       }
+       else{
+    var modregista_dati = {
+      id: $("#modregista_select").children(":selected").attr("id"),
+      nome: $("#modregista_nome").val(),
+      cognome: $("#modregista_cognome").val(),
+      paese: $("#modregista_paese").val(),
+      datanascita: $("#modregista_datanascita").val(),
+      link: $("#modregista_link").val(),
+      img: $("#modregista_img").val(),
+    }
+    $.getJSON("model_updateregista.php", modregista_dati, function(risposta) {
+      alert(risposta);
+      $("#modregista_visimg").empty();
+      $(".modregista-fade").fadeOut();
+      $("#card_modregista").slideUp();
+      aggiorna_selectregista();
+    })
+  }
+  });
+  
+function aggiorna_selectregista (){
+          $.getJSON("model_selectregista.php", function(result) { //prende i dati aggiornati dalla table regista
+          $(".select_regista").empty();
+          for (var i in result) {
+            $(".select_regista").append("<option id='" + result[i].id_regista + "'>" + result[i].nome + " " + result[i].cognome + "</option>"); //aggiorna la select senza bisogno di ricaricare la pagina
+          }
+        });
+  
+}
+  //---MOSTRA FILM  in view_scopri.html--------------------------------------------------------------------------------------------------------------
   $.getJSON("model_selectfilm.php", function(result) {
     $("#table_listafilm").append("<thead class='bg-dark text-white'><tr><th scope='col'> </th><th scope='col'>Nome</th> <th scope='col'>Regista</th> <th></th> </tr> </thead>");
     for (var i in result) {
-      $("#table_listafilm").append("<tr><td><img class='img-thumbnail border border-warning ' mx-5' src='" + result[i].picfilm + "' width='90' height='160'></td><td>" + result[i].nome_film + "</td> <td>" + result[i].nome + " " + result[i].cognome + "</td><td><button  class='btn btn-md btn-warning btn_scoprifilm' id='" + result[i].id_film + "' data-toggle='modal' data-target='#modal_scoprifilm'><i class='fa fa-info'></i></button></td></tr>");
+      $("#table_listafilm").append("<tr><td><img class='img-thumbnail border border-warning' src='" + result[i].picfilm + "' width='90' height='160'></td><td>" + result[i].nome_film + "</td> <td>" + result[i].nome + " " + result[i].cognome + "</td><td><button  class='btn btn-md btn-warning btn_scoprifilm' id='" + result[i].id_film + "' data-toggle='modal' data-target='#modal_scoprifilm'><i class='fa fa-info'></i></button></td></tr>");
     }
     $(".btn_scoprifilm").click(function() {
       var film_cliccato = $(this).attr('id');
@@ -330,9 +376,9 @@ $(document).ready(function() {
       $.getJSON("model_controllofilm.php", id_scoprifilm, function(controllofilm) {
         $("#modal_btnfilm").empty();
         if (controllofilm === true) {
-          $("#modal_btnfilm").append("  <button type='submit' id='btn_aggalista' class='btn btn-lg'>Aggiungi<i class='fa fa-plus'></i></button>");
+          $("#modal_btnfilm").append("  <button type='submit' id='btn_aggalista' class='btn btn-lg'>Aggiungi  <i class='fa fa-plus'></i></button>");
         } else {
-          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Già nella tua lista <i class='fa fa-check'></i></button>");
+          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto  <i class='fa fa-check'></i></button>");
         }
       });
       $.getJSON("model_selectunfilm.php", id_scoprifilm, function(infofilm) {
@@ -348,23 +394,15 @@ $(document).ready(function() {
         $("#modal_anno").append(infofilm.anno);
         $("#modal_durata").append(infofilm.durata + " minuti");
         $("#modal_genere").append(infofilm.genere);
-
         $("#btn_aggalista").click(function() {
           $.getJSON("model_insertlista.php", id_scoprifilm, function(aggiunto) {
-
             $("#modal_btnfilm").empty();
-            $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Già nella tua lista  <i class='fa fa-check'></i></button>");
+            $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto   <i class='fa fa-check'></i></button>");
           });
         });
-
       });
-
-
     });
-
-
   });
-
 
 
 

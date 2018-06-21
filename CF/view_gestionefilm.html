@@ -52,19 +52,19 @@
           <div class="card-header font-weight-bold text-white bg-dark">
             Opzioni
           </div>
-          <div class="card-body">
+          <div class="card-body cf_sfondo bg-warning">
             <ul class="list-group list-group-flush ">
-              <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_film">Film</a>
+              <a href="#" class="list-group-item list-group-item-action font-weight-bold bg-warning" id="a_film">Film</a>
               <ul class="list-group list-group-flush div_nascosto" id="opzioni_film">
-                <a href="#" id="a_aggfilm" class="list-group-item list-group-item-action font-weight-light">Aggiungi</a>
-                <a href="#" id="a_modfilm" class="list-group-item list-group-item-action font-weight-light">Modifica</a>
-                <a href="#" id="a_elifilm" class="list-group-item list-group-item-action font-weight-light">Elimina</a>
+                <a href="#" id="a_aggfilm" class="list-group-item list-group-item-action font-weight-light">Aggiungi <i class='fa fa-plus'></i></a>
+                <a href="#" id="a_modfilm" class="list-group-item list-group-item-action font-weight-light">Modifica <i class='fa fa-edit'></i></a>
+                <a href="#" id="a_elifilm" class="list-group-item list-group-item-action font-weight-light">Elimina <i class='fa fa-times'></i></a>
               </ul>
-              <a href="#" class="list-group-item list-group-item-action font-weight-bold " id="a_regista">Regista</a>
+              <a href="#" class="list-group-item list-group-item-action font-weight-bold bg-warning  " id="a_regista">Regista</a>
               <ul class="list-group list-group-flush div_nascosto bg-secondary text-white" id="opzioni_regista">
-                <a href="#" id="a_aggregista" class="list-group-item list-group-item-action font-weight-light">Aggiungi</a>
-                <a href="#" id="a_modregista" class="list-group-item list-group-item-action font-weight-light">Modifica</a>
-                <a href="#" id="a_eliregista" class="list-group-item list-group-item-action font-weight-light">Elimina</a>
+                <a href="#" id="a_aggregista" class="list-group-item list-group-item-action font-weight-light">Aggiungi <i class='fa fa-plus'></i></a>
+                <a href="#" id="a_modregista" class="list-group-item list-group-item-action font-weight-light">Modifica <i class='fa fa-edit'></i></a>
+                <a href="#" id="a_eliregista" class="list-group-item list-group-item-action font-weight-light">Elimina <i class='fa fa-times'></i></a>
               </ul>
             </ul>
           </div>
@@ -297,13 +297,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control" id="aggregista_link" placeholder="https://it.wikipedia.org/wiki/">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto:</label>
                 <div class="col-sm-5">
                   <input type="input" class="form-control" placeholder="https://...jpg" id="aggregista_img">
                 </div>
@@ -325,48 +325,57 @@
           <div class="card-body">
             <div class="container">
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Scegli film: </label>
+                <label class="col-sm-2 col-form-label font-weight-bold">Scegli regista: </label>
                 <div class="col-sm-5 ">
                   <div>
-                    <select class="form-control" id="modregista_select">                    
+                    <select class="form-control select_regista" id="modregista_select" >                    
                   </select>
                   </div>
                 </div>
               </div>
-              <div class="form-group row modefilm-fade div_nascosto">
+              <div class="form-group row modregista-fade">
                 <label class="col-sm-2 col-form-label">Nome: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="modregista_nome" required>
+                  <input type="input" class="form-control" id="modregista_nome">
                 </div>
               </div>
-              <div class="form-group row modefilm-fade div_nascosto">
+              <div class="form-group row modregista-fade">
+                <label class="col-sm-2 col-form-label">Cognome: </label>
+                <div class="col-sm-5">
+                  <input type="input" class="form-control" id="modregista_cognome">
+                </div>
+              </div>
+                             <div class="form-group row modregista-fade ">
                 <label for="colFormLabel" class="col-sm-2 col-form-label">Paese: </label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="modfilm_cognome">
+                  <input type="input" class="form-control" id="modregista_paese">
+                </div>
+              </div>  
+              <div class="form-group row modregista-fade ">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Data Nascita:</label>
+                <div class="col-sm-5">
+                  <input type="date" class="form-control" id="modregista_datanascita">
+                </div>
+                <label class="col-sm-5 col-form-label font-italic" id="modregista_datanascitacorrente"> </label>
+              </div>           
+              <div class="form-group row modregista-fade">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia:</label>
+                <div class="col-sm-5">
+                  <input type="input" class="form-control" id="modregista_link">
                 </div>
               </div>
-              <div class="form-group row modefilm-fade div_nascosto">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Data nascita:</label>
+              <div class="form-group row modregista-fade">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Immagine:</label>
                 <div class="col-sm-5">
-                  <input type="input" class="form-control" id="modfilm_anno">
+                  <input type="input" class="form-control" id="modregista_img">
                 </div>
               </div>
-              <div class="form-group row modefilm-fade div_nascosto">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Link Wikipedia</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control" id="modfilm_link">
-                </div>
-              </div>
-              <div class="form-group row modefilm-fade div_nascosto">
-                <label for="colFormLabel" class="col-sm-2 col-form-label">Foto</label>
-                <div class="col-sm-5">
-                  <input type="input" class="form-control" id="modfilm_durata">
-                </div>
+                            <div class="form-group row d-flex justify-content-center" id="modregista_visimg">
               </div>
             </div>
           </div>
           <div class="card-footer bg-dark">
-            <button>
+            <button id="btn_modregista">
               Aggiungi
             </button>
             <button>
