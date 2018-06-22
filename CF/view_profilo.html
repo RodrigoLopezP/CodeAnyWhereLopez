@@ -8,10 +8,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  
   <!--file allegati---->
   <script src="controller_CF.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="CSS_CF.css">
@@ -24,17 +24,11 @@
       <a class="navbar-brand " href="view_scopri.html"><img src='CFlogo_small.png'   width='40' height='40'></a>
       <ul class="navbar-nav" id="agg_film">
         <li class="nav-item">
-          <a class="nav-link" href="view_scopri.html">Scopri</a>
+          <a class="nav-link  font-weight-bold " href="view_scopri.html">Scopri</a>
         </li>
       </ul>
     </div>
-    <div class="navbar-expand-lg d-flex justify-content-center">
-      <form class="form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search">
-        <button type="button" class="btn btn-default btn-md">
-            <i class="fa fa-search"></i>
-        </button>
-      </form>
+    <div class="navbar-expand-lg d-flex justify-content-center ui-widget" >
     </div>
     <div class="navbar-expand-lg d-flex justify-content-end btn-group">
 
@@ -92,25 +86,20 @@
                 <label class="col-sm-4 col-form-label">Privilegio:</label>
                 <label class="col-sm-8 col-form-label" id="utente_privilegio"> </label>
               </div>
-
-
-
             </div>
           </div>
         </div>
         <div class="card-footer bg-dark d-flex justify-content-center ">
-          <button class="mx-3" id="apri_listadavedere">
+          <button class="mx-3 btn btn-warning" id="apri_listadavedere">
           Film da vedere
         </button>
-          <button class="mx-3" id="apri_listagiavisti">
+          <button class="mx-3 btn btn-success" id="apri_listagiavisti">
           Film visti
         </button>
         </div>
       </div>
     </div>
     <div class="col-md-7  col-sm-12">
-  
-
 
 
   <!------LISTA FILM DA VEDERE----------------------------------------------------------------------------->
@@ -132,7 +121,7 @@
   <div id="div_filmvisti" class="container mb-3 div_nascosto">
     <div class="card border-dark">
       <div class="card-header font-weight-bold text-white bg-dark">
-        <a id="a_filmvisti" class="cf_sot">Film che hai già visto</a>
+        <a id="a_filmvisti" class="cf_sot">Film visti</a>
       </div>
       <div class="card-body ">
         <table id="table_visti" class="table borderless">
@@ -145,6 +134,52 @@
   </div>
       </div>
       </div>
+  <!------------------------INFO FILM------------------------------------------------------------------------------------>
+  
+  <div id="modal_scoprifilm" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content border-dark ">
+        <div class="modal-header  text-white bg-dark">
+          <h5 class="modal-title">Informazione</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-5 d-flex justify-content-center" id="modal_img">
+            </div>
+            <div class="col-7">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label  font-weight-bold">Film: </label>
+                <label class="col-sm-8 col-form-label" id="modal_nome">  </label>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label  font-weight-bold">Regista: </label>
+                <label class="col-sm-8 col-form-label" id="modal_regista">  </label>
+
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label  font-weight-bold">Anno: </label>
+                <label class="col-sm-8 col-form-label" id="modal_anno">  </label>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label  font-weight-bold">Durata: </label>
+                <label class="col-sm-8 col-form-label" id="modal_durata">  </label>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label  font-weight-bold">Genere: </label>
+                <label class="col-sm-8 col-form-label" id="modal_genere">  </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center bg-dark" id="modal_btnfilm">
+        
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

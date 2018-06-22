@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <!--file allegati---->
   <script src="controller_CF.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="CSS_CF.css">
@@ -21,17 +24,17 @@
   <!------barra di navigazione--------------------------------------------------------------->
   <nav class="navbar navbar-dark bg-dark mb-4">
     <div class="navbar-expand-lg d-flex justify-content-start collapse ">
-      <a class="navbar-brand " href="view_scopri.html"><img src='CFlogo_small.png'   width='40' height='40'></a>
+      <a class="navbar-brand " href="view_scopri.html"><img src='CFlogo_small.png' width='40' height='40'></a>
       <ul class="navbar-nav" id="agg_film">
         <li class="nav-item">
-          <a class="nav-link" href="view_scopri.html">Scopri</a>
+          <a class="nav-link  font-weight-bold " href="view_scopri.html">Scopri</a>
         </li>
       </ul>
     </div>
     <div class="navbar-expand-lg d-flex justify-content-center">
       <form class="form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search">
-        <button type="button" class="btn btn-default btn-md">
+        <input id="input_cerca" class="form-control mr-sm-1" type="search" placeholder="Search">
+        <button id="btn_inputcerca" data-toggle='modal' data-target='#modal_scoprifilm'  type="button" class="btn btn-default btn-md">
             <i class="fa fa-search"></i>
         </button>
       </form>
@@ -79,8 +82,7 @@
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label  font-weight-bold">Regista: </label>
-                <label class="col-sm-8 col-form-label" id="modal_regista">  </label>
-
+                <a href="#" class="col-sm-8 col-form-label" id="modal_regista">  </a>
               </div>
               <div class="form-group row">
                 <label class="col-sm-4 col-form-label  font-weight-bold">Anno: </label>
