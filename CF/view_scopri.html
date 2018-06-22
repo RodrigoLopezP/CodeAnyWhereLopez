@@ -14,7 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <!--file allegati---->
   <script src="controller_CF.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="CSS_CF.css">
@@ -34,7 +34,7 @@
     <div class="navbar-expand-lg d-flex justify-content-center">
       <form class="form-inline">
         <input id="input_cerca" class="form-control mr-sm-1" type="search" placeholder="Search">
-        <button id="btn_inputcerca" data-toggle='modal' data-target='#modal_scoprifilm'  type="button" class="btn btn-default btn-md">
+        <button id="btn_inputcerca" data-toggle='modal' data-target='#modal_scoprifilm' type="button" class="btn btn-default btn-md">
             <i class="fa fa-search"></i>
         </button>
       </form>
@@ -58,6 +58,18 @@
   </nav>
   <!--------LISTA DEI FILM----------------------------------------------------------------------------------------------------------------------->
   <div class="container">
+    <div class="d-flex justify-content-center row">
+      <div class="col-3">
+        <!----classe select_regista si trova nella parte view_gestionefilm------------>
+        <select id="scopri_selectregista" class="form-control mx-5 mb-4 select_regista">         
+      </select>
+      </div>
+      <div class="col-3">
+        <select id="scopri_selectgenere" class="form-control mx-5 mb-4">        
+      </select>
+      </div>
+
+    </div>
     <table id="table_listafilm" class="table ">
     </table>
   </div>
@@ -100,7 +112,7 @@
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-center bg-dark" id="modal_btnfilm">
-        
+
         </div>
       </div>
     </div>

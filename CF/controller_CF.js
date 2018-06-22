@@ -4,6 +4,7 @@ $(document).ready(function() {
   $("#navbar_profilo").click(function() {
     location.href = 'view_profilo.html';
   });
+  $("#input_cerca").val("");
   var utente_loggato;
   verifica_login();
 
@@ -165,7 +166,6 @@ $(document).ready(function() {
     });
   });
 
-
   $("#apri_listagiavisti").click(function() {
     var p = {
       id_utente: utente_loggato.id_utente,
@@ -232,7 +232,7 @@ $(document).ready(function() {
         $("#table_visti").empty();
         $("#table_visti").append("<thead><tr><th scope='col'></th><th scope='col'>Nome</th <th scope='col'>Last</th>  <th></th></tr> </thead>");
         for (var i in result) {
-          $("#table_visti").append("<tr id='rowdavedere_" + listadavedereagg[i].id_film + "'><td> <img  class='img-thumbnail border border-warning ' src='" + listadavedereagg[i].picfilm + "' width='80' height='120' ></img></td><td>" + listadavedereagg[i].nome_film + "</td><td  id='" + listadavedereagg[i].id_film + "' ><button class='btn btn-sm btn-success btn_filmvisto'><i class='fa fa-eye'></i></button> <button class='btn btn-sm btn-warning btn_filminfo mx-2' data-toggle='modal' data-target='#modal_scoprifilm' ><ico class='fa fa-info'></ico></button><button class='btn btn-sm btn-danger btn_filmvistocancella'><ico class='fa fa-times'></ico></button></td></tr>");
+          $("#table_visti").append("<tr id='rowdavedere_" + listadavedereagg[i].id_film + "'><td> <img  class='img-thumbnail border border-warning ' src='" + listadavedereagg[i].picfilm + "' width='80' height='120' ></img></td><td>" + listadavedereagg[i].nome_film + "</td><td  id='" + listadavedereagg[i].id_film + "' > <button class='btn btn-sm btn-warning btn_filminfo mx-2' data-toggle='modal' data-target='#modal_scoprifilm' ><ico class='fa fa-info'></ico></button><button class='btn btn-sm btn-danger btn_filmvistocancella'><ico class='fa fa-times'></ico></button></td></tr>");
         }
       });
     })
@@ -253,10 +253,6 @@ $(document).ready(function() {
     $("#card_gestione").children().slideUp("fast");
     $("#card_modfilm").slideDown("fast");
   });
-  $("#a_elifilm").click(function() {
-    $("#card_gestione").children().slideUp("fast");
-    $("#card_elifilm").slideDown("fast");
-  });
   //-----------
   $("#a_aggregista").click(function() {
     $("#card_gestione").children().slideUp("fast");
@@ -267,10 +263,6 @@ $(document).ready(function() {
     $("#card_gestione").children().slideUp("fast");
     $("#card_modregista").slideDown("fast");
 
-  });
-  $("#a_eliregista").click(function() {
-    $("#card_gestione").children().slideUp("fast");
-    $("#card_eliregista").slideDown("fast");
   });
   //-----------view_gestionefilm.html-----
   $(".modfilm-fade").hide();
@@ -323,6 +315,7 @@ $(document).ready(function() {
       $(".modfilm-fade").fadeIn("slow");
     });
   });
+
   $("#modregista_select").change(function(result) {
     $("#modregista_visimg").empty();
     $(".modregista-fade").fadeOut();
@@ -368,6 +361,7 @@ $(document).ready(function() {
       });
     }
   });
+
   $("#btn_modfilm").click(function() {
     var modfilm_dati = {
       id_film: $("#modfilm_select").children(":selected").attr("id"),
@@ -405,6 +399,7 @@ $(document).ready(function() {
       });
     }
   });
+
   $("#btn_modregista").click(function() {
     if ($("#modregista_nome").val() === "" || $("#modregista_cognome").val() === "" || $("#modregista_paese").val() === "" || $("#modregista_datanascita").val() === "") {
       alert("Riempi tutti gli spazi prima di modificare");
@@ -435,7 +430,6 @@ $(document).ready(function() {
         $(".select_regista").append("<option id='" + result[i].id_regista + "'>" + result[i].nome + " " + result[i].cognome + "</option>"); //aggiorna la select senza bisogno di ricaricare la pagina
       }
     });
-
   }
   //---MOSTRA FILM  in view_scopri.html--------------------------------------------------------------------------------------------------------------
   $.getJSON("model_selectfilm.php", function(result) {
@@ -479,9 +473,77 @@ $(document).ready(function() {
       });
     });
   });
-     
-  $("#btn_inputcerca").click(function(){    
-    $.getJSON("model_selectunfilmnome.php",{ nome_film:$("#input_cerca").val() },function(infofilm){
+
+  $("#btn_inputcerca").click(function() {
+
+    $.getJSON("model_selectunfilmnome.php", {
+      nome_film: $("#input_cerca").val()
+    }, function(infofilm) {
+      $.getJSON("model_controllofilmpernome.php", {
+        nome_film: $("#input_cerca").val(),
+        id_utente: utente_loggato[0],
+      }, function(controllofilm) {
+
+        $("#modal_btnfilm").empty();
+        if (controllofilm === true) {
+          $("#modal_btnfilm").append("  <button type='submit' id='btn_aggalista' class='btn btn-lg'>Aggiungi  <i class='fa fa-plus'></i></button>");
+        } else {
+          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto  <i class='fa fa-check'></i></button>");
+        }
+      });
+      $("#modal_img").empty();
+      $("#modal_nome").empty();
+      $("#modal_regista").empty();
+      $("#modal_anno").empty();
+      $("#modal_durata").empty();
+      $("#modal_genere").empty();
+      $("#modal_img").append(" <img src='" + infofilm.picfilm + "' width='200' height='270' >");
+      $("#modal_nome").append(infofilm.nome_film);
+      $("#modal_regista").append(infofilm.nome + " " + infofilm.cognome);
+      $("#modal_anno").append(infofilm.anno);
+      $("#modal_durata").append(infofilm.durata + " minuti");
+      $("#modal_genere").append(infofilm.genere);
+      $("#btn_aggalista").click(function() {
+        $.getJSON("model_insertlista.php", {
+          id_film: infofilm.id_film,
+          id_utente: utente_loggato[0],
+        }, function(aggiunto) {
+          $("#modal_btnfilm").empty();
+          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto   <i class='fa fa-check'></i></button>");
+        });
+      });
+    });
+  });
+
+  $.getJSON("model_selectgenere.php", function(result) {
+    for (var i in result)
+      $("#scopri_selectgenere").append("<option>" + result[i].genere + " </option>");
+  });
+
+  $("#scopri_selectgenere").change(function() {
+    $("#table_listafilm").empty();
+    $.getJSON("model_selectfilmpergenere.php", {
+      genere: $("#scopri_selectgenere option:selected").text(),
+    }, function(result) {
+      $("#table_listafilm").append("<thead class='bg-dark text-white'><tr><th scope='col'> </th><th scope='col'>Nome</th> <th scope='col'>Regista</th> <th></th> </tr> </thead>");
+      for (var i in result) {
+        $("#table_listafilm").append("<tr><td><img class='img-thumbnail border border-warning' src='" + result[i].picfilm + "' width='90' height='160'></td><td>" + result[i].nome_film + "</td> <td>" + result[i].nome + " " + result[i].cognome + "</td><td><button  class='btn btn-md btn-warning btn_scoprifilm' id='" + result[i].id_film + "' data-toggle='modal' data-target='#modal_scoprifilm'><i class='fa fa-info'></i></button></td></tr>");
+      }
+          $(".btn_scoprifilm").click(function() {
+      var film_cliccato = $(this).attr('id');
+      var id_scoprifilm = {
+        id_film: film_cliccato,
+        id_utente: utente_loggato[0],
+      }
+      $.getJSON("model_controllofilm.php", id_scoprifilm, function(controllofilm) {
+        $("#modal_btnfilm").empty();
+        if (controllofilm === true) {
+          $("#modal_btnfilm").append("  <button type='submit' id='btn_aggalista' class='btn btn-lg'>Aggiungi  <i class='fa fa-plus'></i></button>");
+        } else {
+          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto  <i class='fa fa-check'></i></button>");
+        }
+      });
+      $.getJSON("model_selectunfilm.php", id_scoprifilm, function(infofilm) {
         $("#modal_img").empty();
         $("#modal_nome").empty();
         $("#modal_regista").empty();
@@ -495,14 +557,61 @@ $(document).ready(function() {
         $("#modal_durata").append(infofilm.durata + " minuti");
         $("#modal_genere").append(infofilm.genere);
         $("#btn_aggalista").click(function() {
-          $.getJSON("model_insertlista.php", {id_film: infofilm.id_film, id_utente:utente_loggato[0],}, function(aggiunto) {
+          $.getJSON("model_insertlista.php", id_scoprifilm, function(aggiunto) {
             $("#modal_btnfilm").empty();
             $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto   <i class='fa fa-check'></i></button>");
-          });   
+          });
         });
+      });
     });
+    });   
+  });
+
+  $("#scopri_selectregista").change(function() {
+    $("#table_listafilm").empty();
+    $.getJSON("model_selectfilmperregista.php", {
+      regista: $("#scopri_selectregista option:selected").text(),
+    }, function(result) {
+      $("#table_listafilm").append("<thead class='bg-dark text-white'><tr><th scope='col'> </th><th scope='col'>Nome</th> <th scope='col'>Regista</th> <th></th> </tr> </thead>");
+      for (var i in result) {
+        $("#table_listafilm").append("<tr><td><img class='img-thumbnail border border-warning' src='" + result[i].picfilm + "' width='90' height='160'></td><td>" + result[i].nome_film + "</td> <td>" + result[i].nome + " " + result[i].cognome + "</td><td><button  class='btn btn-md btn-warning btn_scoprifilm' id='" + result[i].id_film + "' data-toggle='modal' data-target='#modal_scoprifilm'><i class='fa fa-info'></i></button></td></tr>");
+      }
+          $(".btn_scoprifilm").click(function() {
+      var film_cliccato = $(this).attr('id');
+      var id_scoprifilm = {
+        id_film: film_cliccato,
+        id_utente: utente_loggato[0],
+      }
+      $.getJSON("model_controllofilm.php", id_scoprifilm, function(controllofilm) {
+        $("#modal_btnfilm").empty();
+        if (controllofilm === true) {
+          $("#modal_btnfilm").append("  <button type='submit' id='btn_aggalista' class='btn btn-lg'>Aggiungi  <i class='fa fa-plus'></i></button>");
+        } else {
+          $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto  <i class='fa fa-check'></i></button>");
+        }
+      });
+      $.getJSON("model_selectunfilm.php", id_scoprifilm, function(infofilm) {
+        $("#modal_img").empty();
+        $("#modal_nome").empty();
+        $("#modal_regista").empty();
+        $("#modal_anno").empty();
+        $("#modal_durata").empty();
+        $("#modal_genere").empty();
+        $("#modal_img").append(" <img src='" + infofilm.picfilm + "' width='200' height='270' >");
+        $("#modal_nome").append(infofilm.nome_film);
+        $("#modal_regista").append(infofilm.nome + " " + infofilm.cognome);
+        $("#modal_anno").append(infofilm.anno);
+        $("#modal_durata").append(infofilm.durata + " minuti");
+        $("#modal_genere").append(infofilm.genere);
+        $("#btn_aggalista").click(function() {
+          $.getJSON("model_insertlista.php", id_scoprifilm, function(aggiunto) {
+            $("#modal_btnfilm").empty();
+            $("#modal_btnfilm").append("  <button type='submit' class='btn btn-success btn-lg disabled'>Aggiunto   <i class='fa fa-check'></i></button>");
+          });
+        });
+      });
+    });
+    });   
   });
   
-
-
 });
